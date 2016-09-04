@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.cchat.android_cchat"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        jumboMode = true
+        javaMaxHeapSize "4g"
+    }
+}
+
+ext {
+    supportLibVersion = '24.2.0'  // variable that can be referenced to keep support libs consistent
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'org.jsoup:jsoup:1.9.2'
+    compile 'com.android.support:support-v4:24.1.1'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.1' //GIF
+    compile "com.android.support:appcompat-v7:${supportLibVersion}" // for tab bar
+    compile "com.android.support:design:${supportLibVersion}" // for tab bar
+}

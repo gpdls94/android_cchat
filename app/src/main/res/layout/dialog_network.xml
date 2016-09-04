@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:id="@+id/dialog_network_ly">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="네트워크 끊김"
+            android:textColor="@color/cchat_text_color"
+            android:textSize="@dimen/cchat_dialog_title_text_size"
+            android:padding="12dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cchat_line_height"
+            android:background="#F50053"/>
+
+        <TextView
+            android:id="@+id/dialog_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cchat_text_color"
+            android:padding="@dimen/cchat_dialog_content_padding"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="@dimen/cchat_dialog_content_text_size"
+            android:gravity="center"
+            android:text="네트워크 연결이 끊어졌어요.\n네트워크 설정 후 다시 실행해주세요."/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/dialog_network_ok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:textColor="@color/cchat_text_color"
+                android:textSize="@dimen/cchat_dialog_title_text_size"
+                android:layout_weight="1"
+                android:text="확인"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

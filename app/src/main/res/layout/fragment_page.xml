@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d2cc00">
+
+    <!--<Button-->
+        <!--android:id="@+id/add_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_toLeftOf="@+id/placeholder"-->
+        <!--android:onClick="onAddClick"-->
+        <!--android:text="add" />-->
+
+    <!--<View-->
+        <!--android:id="@+id/placeholder"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/remove_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:onClick="onRemoveClick"-->
+        <!--android:layout_toRightOf="@+id/placeholder"-->
+        <!--android:text="remove" />-->
+
+    <!--<com.szugyi.circlemenu.view.CircleLayout-->
+        <!--android:id="@+id/circle_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_above="@+id/selected_textView"-->
+        <!--android:layout_below="@id/remove_button"-->
+        <!--android:layout_gravity="center_horizontal">-->
+
+        <!--&lt;!&ndash;<include layout="@layout/menu_items" />&ndash;&gt;-->
+    <!--</com.szugyi.circlemenu.view.CircleLayout>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/selected_textView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="50dp"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge" />-->
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:id="@+id/dialog_quit_ly">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cchat_text_color"
+            android:padding="@dimen/cchat_dialog_content_padding"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="@dimen/cchat_dialog_content_text_size"
+            android:gravity="center"
+            android:text="종료하시겠습니까?" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/dialog_quit_ok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:textColor="@color/cchat_text_color"
+                android:textSize="@dimen/cchat_dialog_title_text_size"
+                android:layout_weight="1"
+                android:text="확인"/>
+            <Button
+                android:id="@+id/dialog_quit_cancle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:textColor="@color/cchat_text_color"
+                android:textSize="@dimen/cchat_dialog_title_text_size"
+                android:layout_weight="1"
+                android:text="취소"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
