@@ -3,4 +3,5 @@
     <color name="cchat_main_color">#F50057</color>
     <color name="cchat_point_color">#960036</color>
     <color name="cchat_text_color">#212121</color>
+    <color name="cchat_hint_text_color">#cdcdcd</color>
 </resources>
