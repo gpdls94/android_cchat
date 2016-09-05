@@ -37,4 +37,5 @@ dependencies {
     // for tab bar
     compile "com.android.support:design:${supportLibVersion}"
     // for tab bar
+    compile 'com.github.szugyi:Android-CircleMenu:1.1.2'
 }
