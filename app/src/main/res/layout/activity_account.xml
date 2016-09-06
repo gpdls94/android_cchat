@@ -47,6 +47,142 @@
             android:background="@android:color/transparent"
             android:paddingTop="12dp">
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/account_ly_signup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="62dp"
+                    android:paddingRight="62dp">
+
+                    <EditText
+                        android:id="@+id/account_et_signup_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/cchat_hint_text_color"
+                        android:drawablePadding="12dp"
+                        android:drawableStart="@android:drawable/ic_dialog_email"
+                        android:hint="이메일을 입력해주세요"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/cchat_text_color"
+                        android:textColorHint="@color/cchat_hint_text_color"
+                        android:textSize="@dimen/cchat_edit_text_size"
+                        android:tag="0"/>
+
+                    <EditText
+                        android:id="@+id/account_et_signup_pw"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/cchat_hint_text_color"
+                        android:drawablePadding="12dp"
+                        android:drawableStart="@android:drawable/ic_dialog_info"
+                        android:hint="비밀번호 입력해주세요"
+                        android:inputType="textPassword"
+                        android:textColor="@color/cchat_text_color"
+                        android:textColorHint="@color/cchat_hint_text_color"
+                        android:textSize="@dimen/cchat_edit_text_size"
+                        android:tag="1" />
+
+                    <EditText
+                        android:id="@+id/account_et_signup_pw2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/cchat_hint_text_color"
+                        android:drawablePadding="12dp"
+                        android:drawableStart="@android:drawable/ic_dialog_alert"
+                        android:hint="비밀번호를 확인해주세요"
+                        android:inputType="textPassword"
+                        android:textColor="@color/cchat_text_color"
+                        android:textColorHint="@color/cchat_hint_text_color"
+                        android:textSize="@dimen/cchat_edit_text_size"
+                        android:tag="2" />
+
+                    <Button
+                        android:id="@+id/account_bt_signup_ok"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/cchat_text_color"
+                        android:background="@android:color/transparent"
+                        android:text="다음"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/account_ly_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="62dp"
+                    android:paddingRight="62dp"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/profile_et_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/cchat_hint_text_color"
+                        android:drawablePadding="12dp"
+                        android:drawableStart="@android:drawable/ic_dialog_email"
+                        android:hint="이름 입력해주세요"
+                        android:textColor="@color/cchat_text_color"
+                        android:textColorHint="@color/cchat_hint_text_color"
+                        android:textSize="@dimen/cchat_edit_text_size"
+                        android:tag="5"/>
+
+                    <EditText
+                        android:id="@+id/profile_et_birth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/cchat_hint_text_color"
+                        android:drawablePadding="12dp"
+                        android:drawableStart="@android:drawable/ic_dialog_info"
+                        android:hint="생일을 입력해주세요"
+                        android:inputType="date"
+                        android:textColor="@color/cchat_text_color"
+                        android:textColorHint="@color/cchat_hint_text_color"
+                        android:textSize="@dimen/cchat_edit_text_size"
+                        android:tag="6" />
+
+                    <EditText
+                        android:id="@+id/profile_et_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/cchat_hint_text_color"
+                        android:drawablePadding="12dp"
+                        android:drawableStart="@android:drawable/ic_dialog_info"
+                        android:hint="성별을 입력해주세요"
+                        android:textColor="@color/cchat_text_color"
+                        android:textColorHint="@color/cchat_hint_text_color"
+                        android:textSize="@dimen/cchat_edit_text_size"
+                        android:tag="7" />
+
+                    <Button
+                        android:id="@+id/profile_ib_pre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/cchat_text_color"
+                        android:background="@android:color/transparent"
+                        android:text="이전"/>
+
+                    <ImageButton
+                        android:id="@+id/profile_ib_ok"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@android:drawable/star_big_off"
+                        android:background="@android:color/transparent"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </FrameLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -56,6 +192,7 @@
                 android:paddingRight="62dp">
 
                 <EditText
+                    android:id="@+id/account_et_login_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/cchat_hint_text_color"
@@ -65,9 +202,11 @@
                     android:inputType="textEmailAddress"
                     android:textColor="@color/cchat_text_color"
                     android:textColorHint="@color/cchat_hint_text_color"
-                    android:textSize="@dimen/cchat_edit_text_size" />
+                    android:textSize="@dimen/cchat_edit_text_size"
+                    android:tag="3" />
 
                 <EditText
+                    android:id="@+id/account_et_login_pw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/cchat_hint_text_color"
@@ -77,61 +216,8 @@
                     android:inputType="textPassword"
                     android:textColor="@color/cchat_text_color"
                     android:textColorHint="@color/cchat_hint_text_color"
-                    android:textSize="@dimen/cchat_edit_text_size" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/cchat_hint_text_color"
-                    android:drawablePadding="12dp"
-                    android:drawableStart="@android:drawable/ic_dialog_alert"
-                    android:hint="비밀번호를 확인해주세요"
-                    android:inputType="textPassword"
-                    android:textColor="@color/cchat_text_color"
-                    android:textColorHint="@color/cchat_hint_text_color"
-                    android:textSize="@dimen/cchat_edit_text_size" />
-
-                <Button
-                    android:id="@+id/account_bt_signup_ok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="확인"/>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingLeft="62dp"
-                android:paddingRight="62dp">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/cchat_hint_text_color"
-                    android:drawablePadding="12dp"
-                    android:drawableStart="@android:drawable/ic_dialog_email"
-                    android:hint="이메일을 입력해주세요"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/cchat_text_color"
-                    android:textColorHint="@color/cchat_hint_text_color"
-                    android:textSize="@dimen/cchat_edit_text_size" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/cchat_hint_text_color"
-                    android:drawablePadding="12dp"
-                    android:drawableStart="@android:drawable/ic_dialog_info"
-                    android:hint="비밀번호 입력해주세요"
-                    android:inputType="textPassword"
-                    android:textColor="@color/cchat_text_color"
-                    android:textColorHint="@color/cchat_hint_text_color"
-                    android:textSize="@dimen/cchat_edit_text_size" />
+                    android:textSize="@dimen/cchat_edit_text_size"
+                    android:tag="4" />
 
                 <com.cchat.android_cchat.View.ScalableLayout
                     android:layout_width="match_parent"

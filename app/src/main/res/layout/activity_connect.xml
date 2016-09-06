@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="62dp"
+        android:paddingRight="62dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:src="@android:drawable/btn_star_big_on" />
+
+        <EditText
+            android:id="@+id/connect_et_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/cchat_hint_text_color"
+            android:drawablePadding="12dp"
+            android:drawableStart="@android:drawable/ic_dialog_email"
+            android:hint="번호를 입력해주세요"
+            android:inputType="number"
+            android:textColor="@color/cchat_text_color"
+            android:textColorHint="@color/cchat_hint_text_color"
+            android:textSize="@dimen/cchat_edit_text_size"
+            android:tag="0"/>
+
+        <EditText
+            android:id="@+id/connect_et_number2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/cchat_hint_text_color"
+            android:drawablePadding="12dp"
+            android:drawableStart="@android:drawable/ic_dialog_info"
+            android:hint="상대방 번호를 입력해주세요"
+            android:inputType="number"
+            android:textColor="@color/cchat_text_color"
+            android:textColorHint="@color/cchat_hint_text_color"
+            android:textSize="@dimen/cchat_edit_text_size"
+            android:tag="1"/>
+
+        <ImageButton
+            android:id="@+id/connect_ib_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/star_big_off" />
+    </LinearLayout>
+
+</LinearLayout>
