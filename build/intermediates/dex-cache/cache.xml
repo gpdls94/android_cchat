@@ -1,2 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.0_cb9876fc80e4867b93a9635dac1be0af017e387d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.0_23f79d031a6bbfa64acfc4e07885c11350bababf/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_2e740d981e3c5a13e46dfcee82caf1d4d14e95cc/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_3b1c866ade2705667d5a28f5f18a2df7ccd95b83/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.0_7b78833310e21fe8066a2a951f21b8a3c4c6767a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.0_b38edf6858a0527982516f48b0dc6d791b0b70a8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.0_cd6e68b4161fd94ae384ac6b6f6dc9ae4b0c2562/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.0_adfe4906ecb708b59f83d04b7b43cdae07dc6423/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/design/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.0_a0987c26541bada430691ec2754b065592cbaaf7/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="2f60c287c4b5ee70521166e09ac575f7df94cc52">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_697072eaa1ee71de1af707eb242a2f7935ac3566/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.0_7d7ce0d09c6a0b0db69f67abb267d7b43f09dcb5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_70604b1236de1ba85fae7364dfddf88eb79bc410/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.0_c36a70a37afc4c2823485f05a28266fc2eb4e171/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.0_a89e2fba59c6afb481431a31c2831e078bc0802a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.9.2/5e3bda828a80c7a21dfbe2308d1755759c2fd7b4/jsoup-1.9.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5e3bda828a80c7a21dfbe2308d1755759c2fd7b4">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/jsoup-1.9.2_d814b3606c2ea4b8d5285b593350e5131eff9bac/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e8ad9daf30f1d190b13e35892f5e6216343a1b28">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_1000bd091abd4ca95e945eb7a177823b164fdc4e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.0_1388ace78b8d1899435efa0be3478fd3544117b6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_0b68428c33e67f83ee1302d37cb9ababc3d4266a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.0_000d0fb18d4980484d9ca49d585f28f63e798248/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_858e49c1f9ea4a2f7f3ea3bd5325091f33140f0b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/seoljunmyung/android_cchat/app/build/intermediates/exploded-aar/pl.droidsonroids.gif/android-gif-drawable/1.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="18e3777df86177870625dce816292aecc871dc43">
+        <dex dex="/Users/seoljunmyung/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/pl.droidsonroids.gif-android-gif-drawable-1.2.1_5faf94aeef1184d9d6f51bed0ae3e2e01c8fd6da/classes.dex" />
+    </item>
+
+</items>
