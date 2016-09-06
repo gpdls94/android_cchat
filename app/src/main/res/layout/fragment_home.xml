@@ -1,5 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:circle="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,4 +17,18 @@
 
     </LinearLayout>
 
-</LinearLayout>
+
+    <com.szugyi.circlemenu.view.CircleLayout
+        android:id="@+id/circle_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/selected_textView"
+        android:layout_gravity="center_horizontal"
+        circle:firstChildPosition="East"
+        circle:isRotating="true"
+        circle:speed="10" >
+
+        <include layout="@layout/layout_circlemenus" />
+    </com.szugyi.circlemenu.view.CircleLayout>
+
+</FrameLayout>
