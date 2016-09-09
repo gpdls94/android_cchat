@@ -32,10 +32,11 @@ dependencies {
     compile 'org.jsoup:jsoup:1.9.2'
     compile 'com.android.support:support-v4:24.1.1'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.1'
-    //GIF
+    // GIF
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
     // for tab bar
     compile "com.android.support:design:${supportLibVersion}"
     // for tab bar
     compile 'com.github.szugyi:Android-CircleMenu:1.1.2'
+    // circle menu
 }

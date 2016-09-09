@@ -25,34 +25,31 @@ public class SplashActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-
-        Handler handler = new Handler() {
-
-            public void handleMessage(Message msg) {
-                finish();
-                startActivity(new Intent(SplashActivity.this, AccountActivity.class));
-            }
-        };
-
-        handler.sendEmptyMessageDelayed(0, 2000);
-
-
-
-        /**
-         *  주석 풀기
-         * **/
-
+        final String TAG = getIntent().getStringExtra("TAG");
 
 //        if(isNetwork) {
-//            Handler handler = new Handler() {
-//
-//                public void handleMessage(Message msg) {
-//                    finish();
-//                    startActivity(new Intent(SplashActivity.this, TabActivity.class));
-//                }
-//            };
-//
-//            handler.sendEmptyMessageDelayed(0, 2000);
+            Handler handler = new Handler() {
+                public void handleMessage(Message msg) {
+                    finish();
+
+                    if (TAG != null && TAG.equals("ConnectActivity")) {
+                        /**
+                         *
+                         *  캐릭터 생성 프로세스
+                         *
+                         */
+
+//                        Toast.makeText(SplashActivity.this, "캐/릭/터/생/성/중....", Toast.LENGTH_SHORT).show();
+
+                        startActivity(new Intent(SplashActivity.this, TabActivity.class));
+
+                    } else {
+                        startActivity(new Intent(SplashActivity.this, AccountActivity.class));
+                    }
+                }
+            };
+
+            handler.sendEmptyMessageDelayed(0, 2000);
 //        } else {
 //            (new CreateDialog(this)).network();
 //        }

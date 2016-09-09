@@ -39,7 +39,7 @@ public class AccountActivity extends FragmentActivity implements View.OnTouchLis
             android.R.drawable.ic_dialog_email, android.R.drawable.ic_dialog_info, android.R.drawable.ic_dialog_info};
 
     int et_focus_icons[]
-            = new int[] {android.R.drawable.ic_partial_secure, android.R.drawable.ic_media_next,
+            = new int[] {android.R.drawable.ic_media_ff, android.R.drawable.ic_media_next,
             android.R.drawable.ic_menu_zoom, android.R.drawable.ic_menu_zoom, android.R.drawable.ic_menu_agenda,
             android.R.drawable.ic_menu_zoom, android.R.drawable.ic_menu_zoom, android.R.drawable.ic_menu_agenda};
 
@@ -60,6 +60,7 @@ public class AccountActivity extends FragmentActivity implements View.OnTouchLis
         ((Button) findViewById(R.id.btn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AccountActivity.this.finish();
                 startActivity(new Intent(AccountActivity.this, TabActivity.class));
             }
         });
@@ -182,8 +183,12 @@ public class AccountActivity extends FragmentActivity implements View.OnTouchLis
                 }
                 break;
             case R.id.account_bt_login_ok:
-                startActivity(new Intent(AccountActivity.this, ConnectActivity.class));
-                AccountActivity.this.finish();
+                if (!et_log_in_email.getText().toString().equals("") && !et_log_in_pw.getText().toString().equals("")) {
+                    AccountActivity.this.finish();
+                    startActivity(new Intent(AccountActivity.this, ConnectActivity.class));
+                } else {
+                    Toast.makeText(AccountActivity.this, "모두 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.profile_ib_pre:
                 findViewById(R.id.account_ly_profile).setVisibility(View.GONE);

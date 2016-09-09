@@ -1,2 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.0_5fe87eb47a47c9779f5d2b14c2ee183cc668d9be/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_4adcb6100f36699c3f05971b80a9daebf031c3d9/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.0_966b2429e8dc7f3137ac6dcd602675eef4d967b0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_e1e0acfc55652d54841ebb79e6009fc8d42dedbd/classes.dex" />
+    </item>
+    <item
+        jar="/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.0_ca036a1116018ac9b72239b62a0a142777388310/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_e73d49b74a1e9b76817300c68dae0c302e841180/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.0_30d06c4614e38a914e36e9bb4cb8684d29b33f99/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.0_b10474574ac433897819ac0116c1d1cfb82aa3e3/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_32179a8bd42ed0f74ce621d76b6d4f7b125ac928/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/design/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.0_f7a8a0e30b514586eaefaa8979081ee0306d3930/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="0c7a8cbe914804f2e725790cd8663f055ffa9218">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_b93fb27474a6968a16c190ddaaaf0b8369d7200f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.9.2/5e3bda828a80c7a21dfbe2308d1755759c2fd7b4/jsoup-1.9.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5e3bda828a80c7a21dfbe2308d1755759c2fd7b4">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/jsoup-1.9.2_095def02c9974f49d3cc76b6008e80c119476cd4/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_3417d3a6a04afa1a9d1e1afb6559ea7bd6c5d0af/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.0_a32398b46bb21ebabd83b9bba00f36f66fbdfba4/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.0_adfa44caca1fc6f6e9775d4dc083dfc310b9d7a8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.0_af1a69527d812025d922e8649f572def228414e8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.github.szugyi/Android-CircleMenu/1.1.2/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e53a04a050c24ead65e439c3304ea7de54a77341">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.szugyi-Android-CircleMenu-1.1.2_d95162692f29a97af37c58870df6c2c7a350d7b5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c21b7d85223e39bbd0272b54c0c17c8a6e579f13">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a4902d0804e89d034c33b86e75170a44ff95651b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/pl.droidsonroids.gif/android-gif-drawable/1.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="18e3777df86177870625dce816292aecc871dc43">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/pl.droidsonroids.gif-android-gif-drawable-1.2.1_1b879da9861c1543d1995c4fe2a7e41cc71ab576/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.0_f8f8fa9b451419b2587a237c7ee764933a529c39/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.0_6d7bc63419a6176ea84697f5f22959f22ce5f99e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/hyein/android_cchat/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/Users/hyein/android_cchat/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.0_221cb8cf30f1dc61bd077d980a1daee655df6ea1/classes.dex" />
+    </item>
+
+</items>

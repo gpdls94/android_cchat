@@ -17,6 +17,7 @@ import com.cchat.android_cchat.R;
  */
 public class ConnectActivity extends FragmentActivity implements View.OnFocusChangeListener {
 
+    private static final String TAG = "ConnectActivity";
     ImageButton ib_connect_ok;
     EditText et_connect_number1, et_connect_number2;
 
@@ -24,7 +25,7 @@ public class ConnectActivity extends FragmentActivity implements View.OnFocusCha
             = new int[] {android.R.drawable.ic_dialog_email, android.R.drawable.ic_dialog_info};
 
     int et_focus_icons[]
-            = new int[] {android.R.drawable.ic_partial_secure, android.R.drawable.ic_media_next};
+            = new int[] {android.R.drawable.ic_media_ff, android.R.drawable.ic_media_next};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,8 +40,8 @@ public class ConnectActivity extends FragmentActivity implements View.OnFocusCha
         ib_connect_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ConnectActivity.this, TabActivity.class));
                 ConnectActivity.this.finish();
+                startActivity(new Intent(ConnectActivity.this, SplashActivity.class).putExtra("TAG", TAG));
             }
         });
 
