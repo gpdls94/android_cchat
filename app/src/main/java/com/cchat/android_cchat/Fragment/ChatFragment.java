@@ -1,6 +1,7 @@
 package com.cchat.android_cchat.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -18,19 +19,25 @@ import android.widget.ListView;
 import com.cchat.android_cchat.Adapter.ChatAdapter;
 import com.cchat.android_cchat.Class.ChatMessage;
 import com.cchat.android_cchat.R;
+import com.yongbeam.y_photopicker.util.photopicker.PhotoPagerActivity;
+import com.yongbeam.y_photopicker.util.photopicker.PhotoPickerActivity;
+import com.yongbeam.y_photopicker.util.photopicker.utils.YPhotoPickerIntent;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ChatFragment extends Fragment {
+
+    private final int REQUEST_CODE = 1;
 
     private View view;
     private static boolean isNetwork;
 
     private EditText messageET;
     private ListView messagesContainer;
-    private ImageButton sendBtn;
+    private ImageButton sendBtn, cameraBtn;
     private ChatAdapter adapter;
     private ArrayList<ChatMessage> chatHistory;
 
@@ -57,6 +64,7 @@ public class ChatFragment extends Fragment {
         messagesContainer = (ListView) view.findViewById(R.id.messagesContainer);
         messageET = (EditText) view.findViewById(R.id.chat_et_chat);
         sendBtn = (ImageButton) view.findViewById(R.id.chat_ib_send);
+        cameraBtn = (ImageButton) view.findViewById(R.id.chat_ib_camera);
 
         loadDummyHistory();
 
@@ -106,6 +114,19 @@ public class ChatFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
             }
         });
+
+        cameraBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                YPhotoPickerIntent intent = new YPhotoPickerIntent(getActivity());
+                intent.setMaxSelectCount(20);
+                intent.setShowCamera(true);
+                intent.setShowGif(true);
+                intent.setSelectCheckBox(false);
+                intent.setMaxGrideItemCount(3);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
     }
 
     public void displayMessage(ChatMessage message) {
@@ -140,6 +161,23 @@ public class ChatFragment extends Fragment {
         for (int i = 0; i < chatHistory.size(); i++) {
             ChatMessage message = chatHistory.get(i);
             displayMessage(message);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        List<String> photos = null;
+        if (resultCode == getActivity().RESULT_OK && requestCode == REQUEST_CODE) {
+            if (data != null) {
+                photos = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
+
+                // start image viewr
+                Intent startActivity = new Intent(getActivity() , PhotoPagerActivity.class);
+                startActivity.putStringArrayListExtra("photos" , (ArrayList<String>) photos);
+                startActivity(startActivity);
+            }
         }
     }
 }
