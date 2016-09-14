@@ -4,6 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="cchat_line_height">1dp</dimen>
+    <dimen name="keyboard_height">230dip</dimen>
 
     <dimen name="cchat_dialog_content_text_size">16sp</dimen>
     <dimen name="cchat_dialog_title_text_size">18sp</dimen>

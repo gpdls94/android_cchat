@@ -2,26 +2,24 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:orientation="vertical">
+        android:layout_alignParentRight="true">
 
         <TextView
             android:id="@+id/txtInfo"
             android:layout_width="wrap_content"
-            android:layout_height="30sp"
-            android:layout_gravity="right"
+            android:layout_height="wrap_content"
             android:textSize="12sp"
+            android:paddingBottom="10dp"
             android:textColor="@android:color/darker_gray" />
 
         <LinearLayout
             android:id="@+id/contentWithBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
             android:background="@drawable/in_message_bg"
             android:paddingLeft="10dp"
             android:paddingBottom="10dp"
@@ -34,7 +32,11 @@
                 android:textColor="@android:color/black"
                 android:maxWidth="240dp" />
 
+            <ImageView
+                android:id="@+id/imgMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

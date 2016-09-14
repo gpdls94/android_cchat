@@ -1,5 +1,7 @@
 package com.cchat.android_cchat.Class;
 
+import android.widget.ImageView;
+
 /**
  * Created by hyein on 2016. 9. 7..
  */
@@ -9,6 +11,11 @@ public class ChatMessage {
     private String message;
     private Long userId;
     private String dateTime;
+
+    /** 0 text 1 image 2 voice ... **/
+    private int category = 0;
+    private ImageView image;
+
 
     public long getId() {
         return id;
@@ -42,5 +49,21 @@ public class ChatMessage {
 
     public void setDate(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+    }
+
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
     }
 }

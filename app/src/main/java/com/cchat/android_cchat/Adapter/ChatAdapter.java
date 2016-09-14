@@ -2,11 +2,12 @@ package com.cchat.android_cchat.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.Gravity;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -69,8 +70,25 @@ public class ChatAdapter extends BaseAdapter {
         boolean myMsg = chatMessage.getIsme() ;//Just a dummy check
         //to simulate whether it me or other sender
         setAlignment(holder, myMsg);
-        holder.txtMessage.setText(chatMessage.getMessage());
-        holder.txtInfo.setText(chatMessage.getDate());
+
+
+        switch (chatMessage.getCategory()) {
+            case 0:
+                holder.imgMessage.setVisibility(View.GONE);
+                holder.txtMessage.setVisibility(View.VISIBLE);
+                holder.txtMessage.setText(chatMessage.getMessage());
+                holder.txtInfo.setText(chatMessage.getDate());
+                break;
+            case 1:
+                holder.txtMessage.setVisibility(View.GONE);
+                holder.imgMessage.setVisibility(View.VISIBLE);
+                holder.imgMessage.setImageDrawable(chatMessage.getImage().getDrawable());
+                holder.contentWithBG.setBackground(null);
+                break;
+            case 2:
+                break;
+            default:
+        }
 
         return convertView;
     }
@@ -87,9 +105,10 @@ public class ChatAdapter extends BaseAdapter {
         if (!isMe) {
             holder.contentWithBG.setBackgroundResource(R.drawable.in_message_bg);
 
-            LinearLayout.LayoutParams layoutParams =
-                    (LinearLayout.LayoutParams) holder.contentWithBG.getLayoutParams();
-            layoutParams.gravity = Gravity.RIGHT;
+            RelativeLayout.LayoutParams layoutParams =
+                    (RelativeLayout.LayoutParams) holder.contentWithBG.getLayoutParams();
+            layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             holder.contentWithBG.setLayoutParams(layoutParams);
 
             RelativeLayout.LayoutParams lp =
@@ -97,49 +116,65 @@ public class ChatAdapter extends BaseAdapter {
             lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
             lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             holder.content.setLayoutParams(lp);
-            layoutParams = (LinearLayout.LayoutParams) holder.txtMessage.getLayoutParams();
-            layoutParams.gravity = Gravity.RIGHT;
-            holder.txtMessage.setLayoutParams(layoutParams);
 
-            layoutParams = (LinearLayout.LayoutParams) holder.txtInfo.getLayoutParams();
-            layoutParams.gravity = Gravity.RIGHT;
+//            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) holder.txtMessage.getLayoutParams();
+//            holder.txtMessage.setLayoutParams(layoutParams);
+
+            layoutParams = (RelativeLayout.LayoutParams) holder.txtInfo.getLayoutParams();
+            layoutParams.removeRule(RelativeLayout.RIGHT_OF);
+            layoutParams.addRule(RelativeLayout.LEFT_OF, R.id.contentWithBackground);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            layoutParams.setMargins(0, 0, pxToDp(context, 20), 0);
             holder.txtInfo.setLayoutParams(layoutParams);
         } else {
             holder.contentWithBG.setBackgroundResource(R.drawable.out_message_bg);
 
-            LinearLayout.LayoutParams layoutParams =
-                    (LinearLayout.LayoutParams) holder.contentWithBG.getLayoutParams();
-            layoutParams.gravity = Gravity.LEFT;
+            RelativeLayout.LayoutParams layoutParams =
+                    (RelativeLayout.LayoutParams) holder.contentWithBG.getLayoutParams();
+            layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             holder.contentWithBG.setLayoutParams(layoutParams);
 
-            RelativeLayout.LayoutParams lp =
-                    (RelativeLayout.LayoutParams) holder.content.getLayoutParams();
-            lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 0);
-            lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            holder.content.setLayoutParams(lp);
-            layoutParams = (LinearLayout.LayoutParams) holder.txtMessage.getLayoutParams();
-            layoutParams.gravity = Gravity.LEFT;
-            holder.txtMessage.setLayoutParams(layoutParams);
+//            RelativeLayout.LayoutParams lp =
+//                    (RelativeLayout.LayoutParams) holder.content.getLayoutParams();
+//            lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 0);
+//            lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+//            holder.content.setLayoutParams(lp);
 
-            layoutParams = (LinearLayout.LayoutParams) holder.txtInfo.getLayoutParams();
-            layoutParams.gravity = Gravity.LEFT;
+//            layoutParams = (LinearLayout.LayoutParams) holder.txtMessage.getLayoutParams();
+//            layoutParams.gravity = Gravity.LEFT;
+//            holder.txtMessage.setLayoutParams(layoutParams);
+
+            layoutParams = (RelativeLayout.LayoutParams) holder.txtInfo.getLayoutParams();
+            layoutParams.removeRule(RelativeLayout.LEFT_OF);
+            layoutParams.addRule(RelativeLayout.RIGHT_OF, R.id.contentWithBackground);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            layoutParams.setMargins(pxToDp(context, 20), 0, 0, 0);
             holder.txtInfo.setLayoutParams(layoutParams);
         }
+    }
+
+    public static int pxToDp(Context context, int px) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        int dp = Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return dp;
     }
 
     private ViewHolder createViewHolder(View v) {
         ViewHolder holder = new ViewHolder();
         holder.txtMessage = (TextView) v.findViewById(R.id.txtMessage);
-        holder.content = (LinearLayout) v.findViewById(R.id.content);
+        holder.content = (RelativeLayout) v.findViewById(R.id.content);
         holder.contentWithBG = (LinearLayout) v.findViewById(R.id.contentWithBackground);
         holder.txtInfo = (TextView) v.findViewById(R.id.txtInfo);
+        holder.imgMessage = (ImageView) v.findViewById(R.id.imgMessage);
         return holder;
     }
 
     private static class ViewHolder {
         public TextView txtMessage;
         public TextView txtInfo;
-        public LinearLayout content;
+        public RelativeLayout content;
         public LinearLayout contentWithBG;
+        public ImageView imgMessage;
     }
 }

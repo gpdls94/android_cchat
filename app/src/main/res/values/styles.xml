@@ -3,6 +3,16 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
+        <item name="android:colorAccent">#F50057</item>
+        <item name="android:colorPrimary">#F50057</item>
+        <item name="android:colorPrimaryDark">#F50057</item>
+        <item name="android:navigationBarColor">#F50057</item>
+        <!-- Toolbar styles -->
+        <item name="android:toolbarStyle">@style/AppTheme</item>
+        <item name="android:actionBarSize">56dp</item>
+        <!--<item name="android:homeAsUpIndicator">@drawable/point</item>-->
+        <item name="android:colorControlHighlight">#F50057</item>
+        <item name="android:colorControlNormal">#F50057</item>
     </style>
 
 </resources>
