@@ -47,7 +47,7 @@ public class EmoticonsGridAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View v) {				
-				mListener.keyClickedIndex(path);
+				mListener.emoKeyClickedIndex(path);
 			}
 		});
 
@@ -92,6 +92,6 @@ public class EmoticonsGridAdapter extends BaseAdapter{
 	
 	public interface KeyClickListener {
 		
-		public void keyClickedIndex(String index);
+		public void emoKeyClickedIndex(String index);
 	}
 }

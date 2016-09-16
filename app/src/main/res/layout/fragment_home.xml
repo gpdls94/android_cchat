@@ -25,10 +25,8 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/selected_textView"
         android:layout_gravity="center_horizontal"
-        android:visibility="gone"
         circle:firstChildPosition="East"
-        circle:isRotating="true"
-        circle:speed="10" >
+        circle:isRotating="false">
 
         <include layout="@layout/layout_circlemenus" />
     </com.szugyi.circlemenu.view.CircleLayout>

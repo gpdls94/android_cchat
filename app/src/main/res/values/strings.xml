@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">CCHAT</string>
+
     <string name="chat_time_AM">오전</string>
     <string name="chat_time_PM">오후</string>
     <string name="chat_send">전송</string>
+
+    <string name="chat_plus_camera">카메라</string>
+    <string name="chat_plus_picture">사진</string>
+    <string name="chat_plus_video">동영상</string>
+    <string name="chat_plus_gift">선물하기</string>
+    <string name="chat_plus_location">위치</string>
+    <string name="chat_plus_phone">연락처</string>
+
 </resources>

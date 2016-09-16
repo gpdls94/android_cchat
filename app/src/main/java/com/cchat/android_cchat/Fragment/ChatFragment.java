@@ -33,10 +33,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.cchat.android_cchat.Adapter.ChatAdapter;
 import com.cchat.android_cchat.Adapter.EmoticonsGridAdapter;
 import com.cchat.android_cchat.Adapter.EmoticonsPagerAdapter;
+import com.cchat.android_cchat.Adapter.PlusGridAdapter;
+import com.cchat.android_cchat.Adapter.PlusPagerAdapter;
 import com.cchat.android_cchat.Class.ChatMessage;
 import com.cchat.android_cchat.R;
 import com.yongbeam.y_photopicker.util.photopicker.PhotoPickerActivity;
@@ -49,14 +52,17 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyClickListener {
+public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyClickListener, PlusGridAdapter.KeyClickListener {
 
     private final int NO_OF_EMOTICONS = 54;
 
     private Bitmap[] emoticons;
+    private String[] btns;
 
-    private PopupWindow popupWindow;
-    private View popUpView;
+    private PopupWindow popupWindow_emo;
+    private PopupWindow popupWindow_plus;
+    private View popUpView_emo;
+    private View popUpView_plus;
     private int keyboardHeight;
     private boolean isKeyBoardVisible;
 
@@ -90,7 +96,8 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
         view = inflater.inflate(R.layout.fragment_chat, container, false);
         ly_root = (LinearLayout) view.findViewById(R.id.chat_ly_root);
 
-        popUpView = getActivity().getLayoutInflater().inflate(R.layout.popup_emoticons, null);
+        popUpView_emo = getActivity().getLayoutInflater().inflate(R.layout.popup_emoticons, null);
+        popUpView_plus = getActivity().getLayoutInflater().inflate(R.layout.popup_plus, null);
 
         init();
         readEmoticons();
@@ -108,6 +115,12 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
         emoBtn = (ImageButton) view.findViewById(R.id.chat_ib_emo);
         emoticonsCover = (LinearLayout) view.findViewById(R.id.footer_for_emoticons);
 
+
+        this.btns = new String[]
+                {getActivity().getResources().getString(R.string.chat_plus_camera), getActivity().getResources().getString(R.string.chat_plus_picture),
+                        getActivity().getResources().getString(R.string.chat_plus_video), getActivity().getResources().getString(R.string.chat_plus_gift),
+                        getActivity().getResources().getString(R.string.chat_plus_location), getActivity().getResources().getString(R.string.chat_plus_phone)};
+
         loadDummyHistory();
 
 
@@ -122,8 +135,14 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
 
                 hideSoftKeyboard(messageET);
 
-                if (popupWindow.isShowing())
-                    popupWindow.dismiss();
+                if (popupWindow_emo.isShowing())
+                    popupWindow_emo.dismiss();
+
+                if (popupWindow_plus.isShowing())
+                    popupWindow_plus.dismiss();
+
+                cameraBtn.setImageResource(android.R.drawable.ic_menu_camera);
+
                 return false;
             }
         });
@@ -153,8 +172,13 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
             public void onClick(View view) {
                 emoticonsCover.setVisibility(LinearLayout.GONE);
 
-                if (popupWindow.isShowing())
-                    popupWindow.dismiss();
+                if (popupWindow_emo.isShowing())
+                    popupWindow_emo.dismiss();
+
+                if (popupWindow_plus.isShowing())
+                    popupWindow_plus.dismiss();
+
+                cameraBtn.setImageResource(android.R.drawable.ic_menu_camera);
             }
         });
 
@@ -172,8 +196,7 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
 
                     sendBtn.setCompoundDrawables(speak_icon, null, null, null);
                     sendBtn.setText("");
-                }
-                else {
+                } else {
                     sendBtn.setCompoundDrawables(null, null, null, null);
                     sendBtn.setText(getActivity().getResources().getString(R.string.chat_send));
                 }
@@ -187,13 +210,26 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                YPhotoPickerIntent intent = new YPhotoPickerIntent(getActivity());
-                intent.setMaxSelectCount(20);
-                intent.setShowCamera(true);
-                intent.setShowGif(true);
-                intent.setSelectCheckBox(false);
-                intent.setMaxGrideItemCount(3);
-                startActivityForResult(intent, REQUEST_CODE);
+
+                if (!popupWindow_plus.isShowing()) {
+
+                    popupWindow_plus.setHeight((int) (keyboardHeight));
+
+                    if (isKeyBoardVisible) {
+                        emoticonsCover.setVisibility(LinearLayout.GONE);
+                    } else {
+                        emoticonsCover.setVisibility(LinearLayout.VISIBLE);
+                    }
+                    popupWindow_plus.showAtLocation(ly_root, Gravity.BOTTOM, 0, 0);
+                    cameraBtn.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
+
+                } else {
+                    popupWindow_plus.dismiss();
+                    cameraBtn.setImageResource(android.R.drawable.ic_menu_camera);
+
+                    if (popupWindow_emo.isShowing())
+                        popupWindow_emo.dismiss();
+                }
             }
         });
 
@@ -201,19 +237,24 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
             @Override
             public void onClick(View view) {
 
-                if (!popupWindow.isShowing()) {
+                if (!popupWindow_emo.isShowing()) {
 
-                    popupWindow.setHeight((int) (keyboardHeight));
+                    popupWindow_emo.setHeight((int) (keyboardHeight));
 
                     if (isKeyBoardVisible) {
                         emoticonsCover.setVisibility(LinearLayout.GONE);
                     } else {
                         emoticonsCover.setVisibility(LinearLayout.VISIBLE);
                     }
-                    popupWindow.showAtLocation(ly_root, Gravity.BOTTOM, 0, 0);
+                    popupWindow_emo.showAtLocation(ly_root, Gravity.BOTTOM, 0, 0);
+                    cameraBtn.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
 
                 } else {
-                    popupWindow.dismiss();
+                    popupWindow_emo.dismiss();
+                    cameraBtn.setImageResource(android.R.drawable.ic_menu_camera);
+
+                    if (popupWindow_plus.isShowing())
+                        popupWindow_plus.dismiss();
                 }
             }
         });
@@ -229,6 +270,7 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
         InputMethodManager mgr
                 = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
     }
 
     private void scroll() {
@@ -272,11 +314,11 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
             if (data != null) {
                 photos = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
 
-                for(int i=0; i< photos.size(); i++){
+                for (int i = 0; i < photos.size(); i++) {
                     try {
                         ImageView image = new ImageView(getActivity());
                         Bitmap orgImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),
-                                Uri.parse("file://"+photos.get(i)));
+                                Uri.parse("file://" + photos.get(i)));
                         Bitmap resize = Bitmap.createScaledBitmap(orgImage, 300, 400, true);
                         image.setImageBitmap(resize);
 
@@ -317,7 +359,7 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
                 ampm = getActivity().getResources().getString(R.string.chat_time_PM);
         }
 
-        return ampm+now.get(Calendar.HOUR)+":"+now.get(Calendar.MINUTE);
+        return ampm + now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE);
     }
 
 
@@ -329,10 +371,24 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
         setEmoticonsPager();
 
         // Creating a pop window for emoticons keyboard
-        popupWindow = new PopupWindow(popUpView, LinearLayout.LayoutParams.MATCH_PARENT,
+        popupWindow_emo = new PopupWindow(popUpView_emo, LinearLayout.LayoutParams.MATCH_PARENT,
                 (int) keyboardHeight, false);
 
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+        popupWindow_emo.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                emoticonsCover.setVisibility(LinearLayout.GONE);
+            }
+        });
+
+        setPlusPager();
+
+        // Creating a pop window for emoticons keyboard
+        popupWindow_plus = new PopupWindow(popUpView_plus, LinearLayout.LayoutParams.MATCH_PARENT,
+                (int) keyboardHeight, false);
+
+        popupWindow_plus.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
             @Override
             public void onDismiss() {
@@ -341,27 +397,21 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
         });
     }
 
-    private void setEmoticonsPager() {
+    private void setPlusPager() {
 
-        ViewPager pager = (ViewPager) popUpView.findViewById(R.id.emoticons_pager);
+        ViewPager pager = (ViewPager) popUpView_plus.findViewById(R.id.plus_pager);
         pager.setOffscreenPageLimit(3);
 
-        ArrayList<String> paths = new ArrayList<String>();
-
-        for (short i = 1; i <= NO_OF_EMOTICONS; i++) {
-            paths.add(i + ".png");
-        }
-
-        EmoticonsPagerAdapter adapter = new EmoticonsPagerAdapter(getActivity(), paths, this);
+        PlusPagerAdapter adapter = new PlusPagerAdapter(getActivity(), btns, this);
         pager.setAdapter(adapter);
 
-        LinearLayout ly_indicators = (LinearLayout) popUpView.findViewById(R.id.emoticons_ly_indicators);
+        LinearLayout ly_indicators = (LinearLayout) popUpView_plus.findViewById(R.id.plus_ly_indicators);
         final ArrayList<ImageView> indicators = new ArrayList<>();
 
 
         for (int i = 0; i < adapter.getCount(); i++) {
             ImageView indicator = new ImageView(getActivity());
-            indicator.setPadding(4,4,4,4);
+            indicator.setPadding(4, 4, 4, 4);
             indicator.setImageResource(android.R.drawable.presence_offline);
 
             ly_indicators.addView(indicator);
@@ -374,7 +424,59 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
 
             @Override
             public void onPageSelected(int position) {
-                for (int i = 0; i <indicators.size(); i++) {
+                for (int i = 0; i < indicators.size(); i++) {
+                    if (i != position) {
+                        indicators.get(i).setImageResource(android.R.drawable.presence_offline);
+                    }
+
+                    indicators.get(position).setImageResource(android.R.drawable.presence_online);
+                }
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
+    }
+
+    private void setEmoticonsPager() {
+
+        ViewPager pager = (ViewPager) popUpView_emo.findViewById(R.id.emoticons_pager);
+        pager.setOffscreenPageLimit(3);
+
+        ArrayList<String> paths = new ArrayList<String>();
+
+        for (short i = 1; i <= NO_OF_EMOTICONS; i++) {
+            paths.add(i + ".png");
+        }
+
+        EmoticonsPagerAdapter adapter = new EmoticonsPagerAdapter(getActivity(), paths, this);
+        pager.setAdapter(adapter);
+
+        LinearLayout ly_indicators = (LinearLayout) popUpView_emo.findViewById(R.id.emoticons_ly_indicators);
+        final ArrayList<ImageView> indicators = new ArrayList<>();
+
+
+        for (int i = 0; i < adapter.getCount(); i++) {
+            ImageView indicator = new ImageView(getActivity());
+            indicator.setPadding(4, 4, 4, 4);
+            indicator.setImageResource(android.R.drawable.presence_offline);
+
+            ly_indicators.addView(indicator);
+            indicators.add(indicator);
+        }
+
+        indicators.get(pager.getCurrentItem()).setImageResource(android.R.drawable.presence_online);
+
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int i = 0; i < indicators.size(); i++) {
                     if (i != position) {
                         indicators.get(i).setImageResource(android.R.drawable.presence_offline);
                     }
@@ -397,6 +499,7 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
      * Checking keyboard height and keyboard visibility
      */
     int previousHeightDiffrence = 0;
+
     private void checkKeyboardHeight(final View parentLayout) {
 
         parentLayout.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -413,7 +516,7 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
                         int heightDifference = screenHeight - (r.bottom);
 
                         if (previousHeightDiffrence - heightDifference > 50) {
-                            popupWindow.dismiss();
+                            popupWindow_emo.dismiss();
                         }
 
                         previousHeightDiffrence = heightDifference;
@@ -436,9 +539,8 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
      * change height of emoticons keyboard according to height of actual
      * keyboard
      *
-     * @param height
-     *            minimum height by which we can make sure actual keyboard is
-     *            open or not
+     * @param height minimum height by which we can make sure actual keyboard is
+     *               open or not
      */
     private void changeKeyboardHeight(int height) {
 
@@ -454,11 +556,11 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
     /**
      * Reading all emoticons in local cache
      */
-    private void readEmoticons () {
+    private void readEmoticons() {
 
         emoticons = new Bitmap[NO_OF_EMOTICONS];
         for (short i = 0; i < NO_OF_EMOTICONS; i++) {
-            emoticons[i] = getImage((i+1) + ".png");
+            emoticons[i] = getImage((i + 1) + ".png");
         }
 
     }
@@ -480,7 +582,7 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
     }
 
     @Override
-    public void keyClickedIndex(final String index) {
+    public void emoKeyClickedIndex(final String index) {
 
         Html.ImageGetter imageGetter = new Html.ImageGetter() {
             public Drawable getDrawable(String source) {
@@ -491,20 +593,41 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
             }
         };
 
-        Spanned cs = Html.fromHtml("<img src ='"+ index +"'/>", imageGetter, null);
+        Spanned cs = Html.fromHtml("<img src ='" + index + "'/>", imageGetter, null);
 
         int cursorPosition = messageET.getSelectionStart();
         messageET.getText().insert(cursorPosition, cs);
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void plusKeyClickedIndex(String index) {
 
-        emoticonsCover.setVisibility(LinearLayout.GONE);
-        hideSoftKeyboard(messageET);
+        if (index.equals(btns[0])) {
+            YPhotoPickerIntent intent = new YPhotoPickerIntent(getActivity());
+            intent.setMaxSelectCount(20);
+            intent.setShowCamera(true);
+            intent.setShowGif(true);
+            intent.setSelectCheckBox(false);
+            intent.setMaxGrideItemCount(3);
+            startActivityForResult(intent, REQUEST_CODE);
+        } else if (index.equals(btns[1])) {
+            YPhotoPickerIntent intent = new YPhotoPickerIntent(getActivity());
+            intent.setMaxSelectCount(20);
+            intent.setShowCamera(true);
+            intent.setShowGif(true);
+            intent.setSelectCheckBox(false);
+            intent.setMaxGrideItemCount(3);
+            startActivityForResult(intent, REQUEST_CODE);
+        } else if (index.equals(btns[2])) {
 
-        if (popupWindow.isShowing())
-            popupWindow.dismiss();
+        } else if (index.equals(btns[3])) {
+
+        } else if (index.equals(btns[4])) {
+
+        } else if (index.equals(btns[5])) {
+
+        } else {
+            Toast.makeText(getActivity(), "준비 중..", Toast.LENGTH_SHORT).show();
+        }
     }
 }
