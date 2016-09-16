@@ -1,5 +1,6 @@
 package com.cchat.android_cchat.Class;
 
+import android.text.Spanned;
 import android.widget.ImageView;
 
 /**
@@ -7,8 +8,8 @@ import android.widget.ImageView;
  */
 public class ChatMessage {
     private long id;
-    private boolean isMe;
-    private String message;
+    private boolean isNotMe;
+    private Spanned message;
     private Long userId;
     private String dateTime;
 
@@ -24,15 +25,15 @@ public class ChatMessage {
         this.id = id;
     }
     public boolean getIsme() {
-        return isMe;
+        return isNotMe;
     }
-    public void setMe(boolean isMe) {
-        this.isMe = isMe;
+    public void setNotMe(boolean isMe) {
+        this.isNotMe = isMe;
     }
-    public String getMessage() {
+    public Spanned getMessage() {
         return message;
     }
-    public void setMessage(String message) {
+    public void setMessage(Spanned message) {
         this.message = message;
     }
     public long getUserId() {

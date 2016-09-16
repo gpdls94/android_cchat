@@ -26,7 +26,7 @@
         android:id="@+id/footer_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/footer" />
+        layout="@layout/layout_footer" />
 
     <LinearLayout
         android:id="@+id/footer_for_emoticons"

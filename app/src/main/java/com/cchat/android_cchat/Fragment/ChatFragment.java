@@ -2,8 +2,11 @@ package com.cchat.android_cchat.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +14,9 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -29,18 +35,25 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.cchat.android_cchat.Adapter.ChatAdapter;
+import com.cchat.android_cchat.Adapter.EmoticonsGridAdapter;
+import com.cchat.android_cchat.Adapter.EmoticonsPagerAdapter;
 import com.cchat.android_cchat.Class.ChatMessage;
 import com.cchat.android_cchat.R;
-import com.cchat.android_cchat.View.ScalableLayout;
 import com.yongbeam.y_photopicker.util.photopicker.PhotoPickerActivity;
 import com.yongbeam.y_photopicker.util.photopicker.utils.YPhotoPickerIntent;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.StringTokenizer;
 
-public class ChatFragment extends Fragment {
+public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyClickListener {
+
+    private final int NO_OF_EMOTICONS = 54;
+
+    private Bitmap[] emoticons;
 
     private PopupWindow popupWindow;
     private View popUpView;
@@ -52,7 +65,6 @@ public class ChatFragment extends Fragment {
     private View view;
     private static boolean isNetwork;
 
-    private ScalableLayout ly_bottom;
     private LinearLayout ly_root;
     private LinearLayout emoticonsCover;
     private EditText messageET;
@@ -78,9 +90,10 @@ public class ChatFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_chat, container, false);
         ly_root = (LinearLayout) view.findViewById(R.id.chat_ly_root);
 
-        popUpView = getActivity().getLayoutInflater().inflate(R.layout.t, null);
+        popUpView = getActivity().getLayoutInflater().inflate(R.layout.popup_emoticons, null);
 
         init();
+        readEmoticons();
         enablePopUpView();
         checkKeyboardHeight(ly_root);
 
@@ -88,7 +101,6 @@ public class ChatFragment extends Fragment {
     }
 
     private void init() {
-        ly_bottom = (ScalableLayout) view.findViewById(R.id.chat_rl_bottom);
         messagesContainer = (ListView) view.findViewById(R.id.messagesContainer);
         messageET = (EditText) view.findViewById(R.id.chat_et_chat);
         sendBtn = (Button) view.findViewById(R.id.chat_ib_send);
@@ -107,8 +119,8 @@ public class ChatFragment extends Fragment {
         messagesContainer.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE))
-                        .hideSoftInputFromWindow(messageET.getWindowToken(), 0);
+
+                hideSoftKeyboard(messageET);
 
                 if (popupWindow.isShowing())
                     popupWindow.dismiss();
@@ -119,20 +131,30 @@ public class ChatFragment extends Fragment {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String messageText = messageET.getText().toString();
-                if (TextUtils.isEmpty(messageText)) {
+                Spanned spanText = messageET.getText();
+                if (TextUtils.isEmpty(spanText)) {
                     return;
                 }
 
                 ChatMessage chatMessage = new ChatMessage();
                 chatMessage.setId(122); //dummy
-                chatMessage.setMessage(messageText);
+                chatMessage.setMessage(spanText);
                 chatMessage.setDate(getTime());
-                chatMessage.setMe(true);
+                chatMessage.setNotMe(false);
 
                 messageET.setText("");
 
                 displayMessage(chatMessage);
+            }
+        });
+
+        messageET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emoticonsCover.setVisibility(LinearLayout.GONE);
+
+                if (popupWindow.isShowing())
+                    popupWindow.dismiss();
             }
         });
 
@@ -203,6 +225,12 @@ public class ChatFragment extends Fragment {
         scroll();
     }
 
+    protected void hideSoftKeyboard(View view) {
+        InputMethodManager mgr
+                = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     private void scroll() {
         messagesContainer.setSelection(messagesContainer.getCount() - 1);
     }
@@ -212,16 +240,16 @@ public class ChatFragment extends Fragment {
 
         ChatMessage msg = new ChatMessage();
         msg.setId(1);
-        msg.setMe(false);
-        msg.setMessage("안농");
+        msg.setNotMe(true);
+        msg.setMessage(SpannableString.valueOf("안농"));
         msg.setCategory(0);
         Calendar now = Calendar.getInstance();
         msg.setDate(getTime());
         chatHistory.add(msg);
         ChatMessage msg1 = new ChatMessage();
         msg1.setId(2);
-        msg1.setMe(false);
-        msg1.setMessage("모하니...");
+        msg1.setNotMe(true);
+        msg1.setMessage(SpannableString.valueOf("방가방가"));
         msg.setCategory(0);
         msg.setDate(getTime());
         chatHistory.add(msg1);
@@ -255,7 +283,7 @@ public class ChatFragment extends Fragment {
                         //test
                         ChatMessage msg = new ChatMessage();
                         msg.setId(3);
-                        msg.setMe(true);
+                        msg.setNotMe(true);
                         msg.setCategory(1); //image
                         msg.setImage(image); //image
                         msg.setDate(getTime());
@@ -298,17 +326,7 @@ public class ChatFragment extends Fragment {
      */
     private void enablePopUpView() {
 
-        ViewPager pager = (ViewPager) popUpView.findViewById(R.id.emoticons_pager);
-        pager.setOffscreenPageLimit(3);
-
-        ArrayList<String> paths = new ArrayList<String>();
-
-//        for (short i = 1; i <= NO_OF_EMOTICONS; i++) {
-//            paths.add(i + ".png");
-//        }
-//
-//        EmoticonsPagerAdapter adapter = new EmoticonsPagerAdapter(MainActivity.this, paths, this);
-//        pager.setAdapter(adapter);
+        setEmoticonsPager();
 
         // Creating a pop window for emoticons keyboard
         popupWindow = new PopupWindow(popUpView, LinearLayout.LayoutParams.MATCH_PARENT,
@@ -319,6 +337,58 @@ public class ChatFragment extends Fragment {
             @Override
             public void onDismiss() {
                 emoticonsCover.setVisibility(LinearLayout.GONE);
+            }
+        });
+    }
+
+    private void setEmoticonsPager() {
+
+        ViewPager pager = (ViewPager) popUpView.findViewById(R.id.emoticons_pager);
+        pager.setOffscreenPageLimit(3);
+
+        ArrayList<String> paths = new ArrayList<String>();
+
+        for (short i = 1; i <= NO_OF_EMOTICONS; i++) {
+            paths.add(i + ".png");
+        }
+
+        EmoticonsPagerAdapter adapter = new EmoticonsPagerAdapter(getActivity(), paths, this);
+        pager.setAdapter(adapter);
+
+        LinearLayout ly_indicators = (LinearLayout) popUpView.findViewById(R.id.emoticons_ly_indicators);
+        final ArrayList<ImageView> indicators = new ArrayList<>();
+
+
+        for (int i = 0; i < adapter.getCount(); i++) {
+            ImageView indicator = new ImageView(getActivity());
+            indicator.setPadding(4,4,4,4);
+            indicator.setImageResource(android.R.drawable.presence_offline);
+
+            ly_indicators.addView(indicator);
+            indicators.add(indicator);
+        }
+
+        indicators.get(pager.getCurrentItem()).setImageResource(android.R.drawable.presence_online);
+
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int i = 0; i <indicators.size(); i++) {
+                    if (i != position) {
+                        indicators.get(i).setImageResource(android.R.drawable.presence_offline);
+                    }
+
+                    indicators.get(position).setImageResource(android.R.drawable.presence_online);
+                }
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
             }
         });
     }
@@ -347,17 +417,16 @@ public class ChatFragment extends Fragment {
                         }
 
                         previousHeightDiffrence = heightDifference;
-                        if (heightDifference > 100) {
+                        if (heightDifference > 144) { /** keyboard OPEN **/
 
                             isKeyBoardVisible = true;
-                            changeKeyboardHeight(heightDifference);
+                            changeKeyboardHeight(keyboardHeight);
 
                         } else {
 
                             isKeyBoardVisible = false;
 
                         }
-
                     }
                 });
 
@@ -373,12 +442,68 @@ public class ChatFragment extends Fragment {
      */
     private void changeKeyboardHeight(int height) {
 
-        if (height > 100) {
+        if (height > 144) {
             keyboardHeight = height;
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, keyboardHeight);
             emoticonsCover.setLayoutParams(params);
         }
 
+    }
+
+    /**
+     * Reading all emoticons in local cache
+     */
+    private void readEmoticons () {
+
+        emoticons = new Bitmap[NO_OF_EMOTICONS];
+        for (short i = 0; i < NO_OF_EMOTICONS; i++) {
+            emoticons[i] = getImage((i+1) + ".png");
+        }
+
+    }
+
+    /**
+     * For loading smileys from assets
+     */
+    private Bitmap getImage(String path) {
+        AssetManager mngr = getActivity().getAssets();
+        InputStream in = null;
+        try {
+            in = mngr.open("emoticons/" + path);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Bitmap temp = BitmapFactory.decodeStream(in, null, null);
+        return temp;
+    }
+
+    @Override
+    public void keyClickedIndex(final String index) {
+
+        Html.ImageGetter imageGetter = new Html.ImageGetter() {
+            public Drawable getDrawable(String source) {
+                StringTokenizer st = new StringTokenizer(index, ".");
+                Drawable d = new BitmapDrawable(getResources(), emoticons[Integer.parseInt(st.nextToken()) - 1]);
+                d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+                return d;
+            }
+        };
+
+        Spanned cs = Html.fromHtml("<img src ='"+ index +"'/>", imageGetter, null);
+
+        int cursorPosition = messageET.getSelectionStart();
+        messageET.getText().insert(cursorPosition, cs);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        emoticonsCover.setVisibility(LinearLayout.GONE);
+        hideSoftKeyboard(messageET);
+
+        if (popupWindow.isShowing())
+            popupWindow.dismiss();
     }
 }

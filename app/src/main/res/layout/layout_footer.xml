@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <com.cchat.android_cchat.View.ScalableLayout
+        android:id="@+id/chat_rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="#efefef"
+        sl:scale_base_width="400"
+        sl:scale_base_height="56"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/chat_ib_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_width="40"
+            sl:scale_height="40"
+            sl:scale_top="8"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_camera"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_et"
+            sl:scale_width="320"
+            sl:scale_height="40"
+            sl:scale_left="40"
+            sl:scale_top="8">
+
+            <EditText
+                android:id="@+id/chat_et_chat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:paddingStart="10dp"
+                android:paddingRight="10dp"
+                android:layout_toLeftOf="@+id/chat_ib_emo"
+                android:autoText="true"
+                android:hint="type message"
+                android:textColor="@color/cchat_text_color" />
+
+            <ImageButton
+                android:id="@+id/chat_ib_emo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="2dp"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_input_add"/>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/chat_ib_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_width="40"
+            sl:scale_height="40"
+            sl:scale_top="8"
+            sl:scale_left="360"
+            sl:scale_textsize="18"
+            android:textColor="@color/cchat_text_color"
+            android:drawableStart="@android:drawable/ic_btn_speak_now"
+            android:background="@android:color/transparent"/>
+    </com.cchat.android_cchat.View.ScalableLayout>
+
+</LinearLayout>
