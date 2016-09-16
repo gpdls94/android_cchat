@@ -498,8 +498,9 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onStop() {
+        super.onStop();
+
         emoticonsCover.setVisibility(LinearLayout.GONE);
         hideSoftKeyboard(messageET);
 
