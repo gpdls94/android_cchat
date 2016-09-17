@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -19,20 +18,18 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.cchat.android_cchat.Adapter.ChatAdapter;
@@ -42,6 +39,7 @@ import com.cchat.android_cchat.Adapter.PlusGridAdapter;
 import com.cchat.android_cchat.Adapter.PlusPagerAdapter;
 import com.cchat.android_cchat.Class.ChatMessage;
 import com.cchat.android_cchat.R;
+import com.cchat.android_cchat.View.SoftKeyboardDectectorView;
 import com.yongbeam.y_photopicker.util.photopicker.PhotoPickerActivity;
 import com.yongbeam.y_photopicker.util.photopicker.utils.YPhotoPickerIntent;
 
@@ -59,19 +57,17 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
     private Bitmap[] emoticons;
     private String[] btns;
 
-    private PopupWindow popupWindow_emo;
-    private PopupWindow popupWindow_plus;
     private View popUpView_emo;
     private View popUpView_plus;
-    private int keyboardHeight;
     private boolean isKeyBoardVisible;
+    private boolean isPlusVisible;
+    private boolean isEmoVisible;
 
     private final int REQUEST_CODE = 1;
 
     private View view;
     private static boolean isNetwork;
 
-    private LinearLayout ly_root;
     private LinearLayout emoticonsCover;
     private EditText messageET;
     private ListView messagesContainer;
@@ -88,13 +84,15 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isKeyBoardVisible = false;
+        isEmoVisible = false;
+        isPlusVisible = false;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_chat, container, false);
-        ly_root = (LinearLayout) view.findViewById(R.id.chat_ly_root);
 
         popUpView_emo = getActivity().getLayoutInflater().inflate(R.layout.popup_emoticons, null);
         popUpView_plus = getActivity().getLayoutInflater().inflate(R.layout.popup_plus, null);
@@ -102,7 +100,7 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
         init();
         readEmoticons();
         enablePopUpView();
-        checkKeyboardHeight(ly_root);
+        keyboardInit();
 
         return view;
     }
@@ -123,23 +121,12 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
 
         loadDummyHistory();
 
-
-        // Defining default height of keyboard which is equal to 230 dip
-        final float popUpheight = getResources().getDimension(
-                R.dimen.keyboard_height);
-        changeKeyboardHeight((int) popUpheight);
-
         messagesContainer.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
                 hideSoftKeyboard(messageET);
-
-                if (popupWindow_emo.isShowing())
-                    popupWindow_emo.dismiss();
-
-                if (popupWindow_plus.isShowing())
-                    popupWindow_plus.dismiss();
+                emoticonsCover.setVisibility(View.GONE);
 
                 cameraBtn.setImageResource(android.R.drawable.ic_menu_camera);
 
@@ -171,13 +158,6 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
             @Override
             public void onClick(View view) {
                 emoticonsCover.setVisibility(LinearLayout.GONE);
-
-                if (popupWindow_emo.isShowing())
-                    popupWindow_emo.dismiss();
-
-                if (popupWindow_plus.isShowing())
-                    popupWindow_plus.dismiss();
-
                 cameraBtn.setImageResource(android.R.drawable.ic_menu_camera);
             }
         });
@@ -211,24 +191,32 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
             @Override
             public void onClick(View view) {
 
-                if (!popupWindow_plus.isShowing()) {
+                if (!isPlusVisible) {
 
-                    popupWindow_plus.setHeight((int) (keyboardHeight));
-
-                    if (isKeyBoardVisible) {
-                        emoticonsCover.setVisibility(LinearLayout.GONE);
-                    } else {
-                        emoticonsCover.setVisibility(LinearLayout.VISIBLE);
+                    if (isEmoVisible) {
+                        emoticonsCover.removeView(popUpView_emo);
+                        isEmoVisible = false;
                     }
-                    popupWindow_plus.showAtLocation(ly_root, Gravity.BOTTOM, 0, 0);
+
+                    emoticonsCover.setVisibility(LinearLayout.VISIBLE);
+                    emoticonsCover.addView(popUpView_plus);
+
                     cameraBtn.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
 
+                    isPlusVisible = true;
+
+                    if (isKeyBoardVisible) {
+                        hideSoftKeyboard(messageET);
+                    }
+
                 } else {
-                    popupWindow_plus.dismiss();
+
+                    emoticonsCover.setVisibility(LinearLayout.GONE);
+                    emoticonsCover.removeView(popUpView_plus);
+
                     cameraBtn.setImageResource(android.R.drawable.ic_menu_camera);
 
-                    if (popupWindow_emo.isShowing())
-                        popupWindow_emo.dismiss();
+                    isPlusVisible = false;
                 }
             }
         });
@@ -237,25 +225,32 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
             @Override
             public void onClick(View view) {
 
-                if (!popupWindow_emo.isShowing()) {
+                if (!isEmoVisible) {
 
-                    popupWindow_emo.setHeight((int) (keyboardHeight));
+
+                    if (isPlusVisible) {
+                        emoticonsCover.removeView(popUpView_plus);
+                        isPlusVisible = false;
+                    }
+
+                    emoticonsCover.setVisibility(LinearLayout.VISIBLE);
+                    emoticonsCover.addView(popUpView_emo);
+
+                    isEmoVisible = true;
 
                     if (isKeyBoardVisible) {
-                        emoticonsCover.setVisibility(LinearLayout.GONE);
-                    } else {
-                        emoticonsCover.setVisibility(LinearLayout.VISIBLE);
+                        hideSoftKeyboard(messageET);
                     }
-                    popupWindow_emo.showAtLocation(ly_root, Gravity.BOTTOM, 0, 0);
-                    cameraBtn.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
 
                 } else {
-                    popupWindow_emo.dismiss();
-                    cameraBtn.setImageResource(android.R.drawable.ic_menu_camera);
 
-                    if (popupWindow_plus.isShowing())
-                        popupWindow_plus.dismiss();
+                    emoticonsCover.setVisibility(LinearLayout.GONE);
+                    emoticonsCover.removeView(popUpView_emo);
+
+                    isEmoVisible = false;
                 }
+
+                cameraBtn.setImageResource(android.R.drawable.ic_menu_camera);
             }
         });
     }
@@ -266,11 +261,10 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
         scroll();
     }
 
-    protected void hideSoftKeyboard(View view) {
-        InputMethodManager mgr
-                = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    protected void hideSoftKeyboard(final View view) {
 
+        InputMethodManager ipm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        ipm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void scroll() {
@@ -369,32 +363,7 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
     private void enablePopUpView() {
 
         setEmoticonsPager();
-
-        // Creating a pop window for emoticons keyboard
-        popupWindow_emo = new PopupWindow(popUpView_emo, LinearLayout.LayoutParams.MATCH_PARENT,
-                (int) keyboardHeight, false);
-
-        popupWindow_emo.setOnDismissListener(new PopupWindow.OnDismissListener() {
-
-            @Override
-            public void onDismiss() {
-                emoticonsCover.setVisibility(LinearLayout.GONE);
-            }
-        });
-
         setPlusPager();
-
-        // Creating a pop window for emoticons keyboard
-        popupWindow_plus = new PopupWindow(popUpView_plus, LinearLayout.LayoutParams.MATCH_PARENT,
-                (int) keyboardHeight, false);
-
-        popupWindow_plus.setOnDismissListener(new PopupWindow.OnDismissListener() {
-
-            @Override
-            public void onDismiss() {
-                emoticonsCover.setVisibility(LinearLayout.GONE);
-            }
-        });
     }
 
     private void setPlusPager() {
@@ -496,64 +465,6 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
     }
 
     /**
-     * Checking keyboard height and keyboard visibility
-     */
-    int previousHeightDiffrence = 0;
-
-    private void checkKeyboardHeight(final View parentLayout) {
-
-        parentLayout.getViewTreeObserver().addOnGlobalLayoutListener(
-                new ViewTreeObserver.OnGlobalLayoutListener() {
-
-                    @Override
-                    public void onGlobalLayout() {
-
-                        Rect r = new Rect();
-                        parentLayout.getWindowVisibleDisplayFrame(r);
-
-                        int screenHeight = parentLayout.getRootView()
-                                .getHeight();
-                        int heightDifference = screenHeight - (r.bottom);
-
-                        if (previousHeightDiffrence - heightDifference > 50) {
-                            popupWindow_emo.dismiss();
-                        }
-
-                        previousHeightDiffrence = heightDifference;
-                        if (heightDifference > 144) { /** keyboard OPEN **/
-
-                            isKeyBoardVisible = true;
-                            changeKeyboardHeight(keyboardHeight);
-
-                        } else {
-
-                            isKeyBoardVisible = false;
-
-                        }
-                    }
-                });
-
-    }
-
-    /**
-     * change height of emoticons keyboard according to height of actual
-     * keyboard
-     *
-     * @param height minimum height by which we can make sure actual keyboard is
-     *               open or not
-     */
-    private void changeKeyboardHeight(int height) {
-
-        if (height > 144) {
-            keyboardHeight = height;
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, keyboardHeight);
-            emoticonsCover.setLayoutParams(params);
-        }
-
-    }
-
-    /**
      * Reading all emoticons in local cache
      */
     private void readEmoticons() {
@@ -629,5 +540,40 @@ public class ChatFragment extends Fragment implements EmoticonsGridAdapter.KeyCl
         } else {
             Toast.makeText(getActivity(), "준비 중..", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void keyboardInit() {
+        final SoftKeyboardDectectorView softKeyboardDecector = new SoftKeyboardDectectorView(getActivity());
+        getActivity().addContentView(softKeyboardDecector, new FrameLayout.LayoutParams(-1, -1));
+
+        softKeyboardDecector.setOnShownKeyboard(new SoftKeyboardDectectorView.OnShownKeyboardListener() {
+
+            @Override
+            public void onShowSoftKeyboard() {
+                //키보드 등장할 때
+                if (isPlusVisible) {
+                    emoticonsCover.setVisibility(View.GONE);
+                    emoticonsCover.removeView(popUpView_plus);
+                    isPlusVisible = false;
+                }
+
+                if (isEmoVisible) {
+                    emoticonsCover.setVisibility(View.GONE);
+                    emoticonsCover.removeView(popUpView_emo);
+                    isEmoVisible = false;
+                }
+
+                isKeyBoardVisible = true;
+            }
+        });
+
+        softKeyboardDecector.setOnHiddenKeyboard(new SoftKeyboardDectectorView.OnHiddenKeyboardListener() {
+
+            @Override
+            public void onHiddenSoftKeyboard() {
+                // 키보드 사라질 때
+                isKeyBoardVisible = false;
+            }
+        });
     }
 }

@@ -62,6 +62,7 @@ public class ScalableLayout extends FrameLayout {
 //			log("==== postDelayedRequestLayout Start");
 //			log(getStackTrace(Thread.currentThread().getStackTrace()));
 //			log("==== postDelayedRequestLayout End");
+
             postDelayed(new Runnable() {
                 @Override
                 public void run() {

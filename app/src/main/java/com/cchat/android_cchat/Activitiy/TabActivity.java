@@ -44,7 +44,7 @@ public class TabActivity extends AppCompatActivity {
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setSelectedTabIndicatorColor(getColor(R.color.cchat_main_color));
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.cchat_main_color));
 
         // Iterate over all tabs and set the custom view
         for (int i = 0; i < tabLayout.getTabCount(); i++) {

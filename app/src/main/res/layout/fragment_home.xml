@@ -1,20 +1,20 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:circle="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:gravity="center">
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/home_gif_character"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/gif_test"/>
+            android:src="@mipmap/gif_test" />
 
     </LinearLayout>
 
@@ -30,5 +30,40 @@
 
         <include layout="@layout/layout_circlemenus" />
     </com.szugyi.circlemenu.view.CircleLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_margin="8dp">
+
+        <ImageView
+            android:id="@+id/home_lv_character"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/ic_launcher"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/home_lv_character"
+            android:layout_marginLeft="4dp"
+            android:padding="8dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lv 0"
+                android:textColor="@color/cchat_text_color"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/ic_launcher"/>
+
+    </RelativeLayout>
 
 </FrameLayout>
