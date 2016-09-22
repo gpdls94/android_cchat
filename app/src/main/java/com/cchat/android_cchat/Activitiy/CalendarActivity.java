@@ -59,9 +59,9 @@ public class CalendarActivity extends Activity {
     float m_textSize ;    /// 텍스트 사이즈(위 라인의 변수와 곱해짐)
     float m_topTextSize ;   /// 요일텍스트 사이즈(역시 보정값과 곱해짐)
 
-    int m_tcHeight = 50 ;   /// 요일 들어가는 부분 한칸의 높이
+    int m_tcHeight = 24 ;   /// 요일 들어가는 부분 한칸의 높이
     int m_cWidth = 50 ;    /// 한칸의 넓이
-    int m_cHeight = 50 ;   /// 한칸의 높이
+    int m_cHeight = 24 ;   /// 한칸의 높이
     int m_lineSize = 1 ;   /// 경계선의 굵기
 
     static public class gsCalendarColorParam
@@ -90,7 +90,7 @@ public class CalendarActivity extends Activity {
     Drawable m_todayCellBgImgId = null ;  /// 선택 날짜의 배경 이미지
 
     /// 상단에 표시하는 요일 텍스트
-    String [] m_dayText ={ "일", "월", "화", "수", "목", "금", "토" } ;
+    String [] m_dayText ={ "S", "M", "T", "W", "T", "F", "S" } ;
 
 ///////////////////////////////////////////
 
@@ -137,7 +137,7 @@ public class CalendarActivity extends Activity {
         m_displayScale = context.getResources( ).getDisplayMetrics( ).density ;
 
         m_topTextSize = m_displayScale * 4.0f ;
-        m_textSize = m_displayScale * 5.5f ;
+        m_textSize = m_displayScale * 4.0f ;
 
         m_colorParam = new gsCalendarColorParam( ) ;
 
@@ -376,8 +376,8 @@ public class CalendarActivity extends Activity {
 /// 한칸한칸 들어가는 버튼
 
                     if (cellnum > 6) {
-                        m_cellTextBtn[ cellnum ].setGravity( Gravity.TOP | Gravity.CENTER_HORIZONTAL ) ;
-                        m_cellTextBtn[ cellnum ].setPadding(0, pixelToDip(8), 0, 0);
+                        m_cellTextBtn[ cellnum ].setGravity(Gravity.CENTER);
+                        m_cellTextBtn[ cellnum ].setPadding(0, 0, 0, 0);
                     } else {
                         m_cellTextBtn[cellnum].setGravity(Gravity.CENTER);
                     }
@@ -464,12 +464,12 @@ public class CalendarActivity extends Activity {
     {
         // 가로 라인
 
-        for( int i = 0 ; i < ROWS - 1 ; i ++ )
-        {
-            m_horizontalLine[ i ].setBackgroundColor( m_colorParam.m_lineColor ) ; /// 라인색
-            m_horizontalLine[ i ].setLayoutParams( /// 가로 라인이니까 가로는 꽉 세로는 두께만큼
-                    new LinearLayout.LayoutParams( LinearLayout.LayoutParams.FILL_PARENT, m_lineSize ) ) ;
-        }
+//        for( int i = 0 ; i < ROWS - 1 ; i ++ )
+//        {
+//            m_horizontalLine[ i ].setBackgroundColor( m_colorParam.m_lineColor ) ; /// 라인색
+//            m_horizontalLine[ i ].setLayoutParams( /// 가로 라인이니까 가로는 꽉 세로는 두께만큼
+//                    new LinearLayout.LayoutParams( LinearLayout.LayoutParams.FILL_PARENT, m_lineSize ) ) ;
+//        }
 
         // 세로 라인
 

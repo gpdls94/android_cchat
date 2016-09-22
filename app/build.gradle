@@ -37,7 +37,7 @@ dependencies {
     // for tab bar
     compile "com.android.support:design:${supportLibVersion}"
     // for tab bar
-    compile 'com.github.szugyi:Android-CircleMenu:1.1.2'
+//    compile 'com.github.szugyi:Android-CircleMenu:1.1.2'
     // circle menu
     compile 'com.yongbeam.y_photopicker:y-photopicker:0.0.1'
     // album

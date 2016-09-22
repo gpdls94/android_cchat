@@ -49,7 +49,6 @@ public class PageFragment extends Fragment {
     private void init() {
 
         LinearLayout lv = (LinearLayout) view.findViewById( R.id.calendar_lLayout ) ;
-        LinearLayout ly_root = (LinearLayout) view.findViewById(R.id.page_ly_root);
 
         tvs = new TextView[3] ;
         tvs[0] = (TextView) view.findViewById( R.id.tv1 ) ;
@@ -67,19 +66,20 @@ public class PageFragment extends Fragment {
 
         cParam.m_cellColor = 0x00000000 ;
         cParam.m_textColor = getActivity().getResources().getColor(R.color.cchat_text_color);
-        cParam.m_saturdayTextColor = getActivity().getResources().getColor(R.color.cchat_hint_text_color);
+        cParam.m_saturdayTextColor = getActivity().getResources().getColor(R.color.cchat_text_color);
+        cParam.m_sundayTextColor = getActivity().getResources().getColor(R.color.cchat_text_color);
         cParam.m_lineColor = 0x99999999 ;
         cParam.m_topCellColor = 0xffffffff ;
-        cParam.m_topTextColor = getActivity().getResources().getColor(R.color.cchat_text_color);
-        cParam.m_topSundayTextColor = getActivity().getResources().getColor(R.color.cchat_text_color);
-        cParam.m_topSaturdatTextColor = getActivity().getResources().getColor(R.color.cchat_text_color);
+        cParam.m_topTextColor = getActivity().getResources().getColor(R.color.cchat_hint_text_color);
+        cParam.m_topSundayTextColor = getActivity().getResources().getColor(R.color.cchat_hint_text_color);
+        cParam.m_topSaturdatTextColor = getActivity().getResources().getColor(R.color.cchat_hint_text_color);
 
         cal.setColorParam( cParam ) ;
 
 //        Drawable img = getResources( ).getDrawable( R.drawable.bg ) ;
 //        cal.setBackground( img ) ;
 
-        cal.setCalendarSize(getScreenSize(getActivity()).x, getScreenSize(getActivity()).y) ;
+        cal.setCalendarSize(getScreenSize(getActivity()).x, ((2 * getScreenSize(getActivity()).y) / 3)) ;
 
         cal.setTopCellSize( 100 ) ;
 
