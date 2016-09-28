@@ -3,7 +3,7 @@
     android:id="@+id/chat_ly_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cchat_main_background_color"
+    android:background="#ffdfdf"
     android:orientation="vertical">
 
     <Toolbar
@@ -11,22 +11,141 @@
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/cchat_main_color">
 
-        <ImageButton
-            android:id="@+id/chat_tb_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:src="@android:drawable/ic_media_previous"
-            android:background="@android:color/transparent"/>
-
-        <TextView
-            android:id="@+id/chat_tb_title"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="CChat"
-            android:textSize="20sp"/>
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/chat_tb_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:src="@android:drawable/ic_media_previous"
+                android:background="@android:color/transparent"/>
+
+            <TextView
+                android:id="@+id/chat_tb_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/chat_tb_back"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="CChat"
+                android:textSize="20sp"/>
+
+            <ImageButton
+                android:id="@+id/chat_tb_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:layout_toLeftOf="@+id/chat_tb_menu"
+                android:layout_marginRight="24dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:src="@android:drawable/ic_menu_zoom"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/chat_tb_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                android:background="@android:color/transparent"/>
+
+
+            <!-- SEARCH BOX  -->
+
+            <LinearLayout
+                android:id="@+id/chat_tb_search_box"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:layout_margin="8dp"
+                android:translationZ="2dp"
+                android:background="@drawable/background_chat_search_box">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:src="@android:drawable/ic_menu_zoom"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/cchat_text_color"
+                    android:textColorHint="@color/cchat_hint_text_color"
+                    android:hint="@string/chat_search_hint"
+                    android:textSize="14sp"/>
+
+                <ImageButton
+                    android:id="@+id/chat_search_box_close"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:onClick="onClick"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:background="@android:color/transparent"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
     </Toolbar>
+    
+    <LinearLayout
+        android:id="@+id/chat_ly_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:background="#dfdfdf">
+
+        <Button
+            android:id="@+id/chat_bt_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:paddingTop="8dp"
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:background="@android:color/transparent"
+            android:drawableTop="@android:drawable/ic_menu_gallery"
+            android:text="보관함"
+            android:textSize="12sp"
+            android:textColor="@color/cchat_text_color"/>
+
+        <Button
+            android:id="@+id/chat_bt_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="10dp"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:gravity="center"
+            android:background="@android:color/transparent"
+            android:drawableTop="@android:drawable/ic_menu_manage"
+            android:text="설정"
+            android:textSize="12sp"
+            android:textColor="@color/cchat_text_color"/>
+    </LinearLayout>
+    
     <ListView
         android:id="@+id/messagesContainer"
         android:layout_width="match_parent"

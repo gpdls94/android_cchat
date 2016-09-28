@@ -12,4 +12,6 @@
     <string name="chat_plus_location">위치</string>
     <string name="chat_plus_phone">연락처</string>
 
+    <string name="chat_search_hint">대화내용을 검색해보세요.</string>
+
 </resources>

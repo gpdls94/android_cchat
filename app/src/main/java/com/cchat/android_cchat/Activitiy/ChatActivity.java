@@ -65,6 +65,8 @@ public class ChatActivity extends FragmentActivity implements EmoticonsGridAdapt
     private boolean isPlusVisible;
     private boolean isEmoVisible;
 
+    private boolean isMenuOpen;
+
     private final int REQUEST_CODE = 1;
 
     private static boolean isNetwork;
@@ -88,6 +90,7 @@ public class ChatActivity extends FragmentActivity implements EmoticonsGridAdapt
         isKeyBoardVisible = false;
         isEmoVisible = false;
         isPlusVisible = false;
+        isMenuOpen = false;
 
         popUpView_emo = getLayoutInflater().inflate(R.layout.popup_emoticons, null);
         popUpView_plus = getLayoutInflater().inflate(R.layout.popup_plus, null);
@@ -139,7 +142,8 @@ public class ChatActivity extends FragmentActivity implements EmoticonsGridAdapt
                 ChatMessage chatMessage = new ChatMessage();
                 chatMessage.setId(122); //dummy
                 chatMessage.setMessage(spanText);
-                chatMessage.setDate(getTime());
+                chatMessage.setTime(getTime());
+                chatMessage.setDate(getDate());
                 chatMessage.setNotMe(false);
 
                 messageET.setText("");
@@ -278,15 +282,16 @@ public class ChatActivity extends FragmentActivity implements EmoticonsGridAdapt
         msg.setNotMe(true);
         msg.setMessage(SpannableString.valueOf("안농"));
         msg.setCategory(0);
-        Calendar now = Calendar.getInstance();
-        msg.setDate(getTime());
+        msg.setTime(getTime());
+        msg.setDate("2016년 9월 10");
         chatHistory.add(msg);
         ChatMessage msg1 = new ChatMessage();
         msg1.setId(2);
         msg1.setNotMe(true);
         msg1.setMessage(SpannableString.valueOf("방가방가"));
-        msg.setCategory(0);
-        msg.setDate(getTime());
+        msg1.setCategory(0);
+        msg1.setTime(getTime());
+        msg1.setDate("2016년 9월 10");
         chatHistory.add(msg1);
 
         adapter = new ChatAdapter(this, new ArrayList<ChatMessage>());
@@ -321,7 +326,8 @@ public class ChatActivity extends FragmentActivity implements EmoticonsGridAdapt
                         msg.setNotMe(true);
                         msg.setCategory(1); //image
                         msg.setImage(image); //image
-                        msg.setDate(getTime());
+                        msg.setTime(getTime());
+                        msg.setDate(getDate());
                         chatHistory.add(msg);
 
                         displayMessage(msg);
@@ -344,6 +350,8 @@ public class ChatActivity extends FragmentActivity implements EmoticonsGridAdapt
         Calendar now = Calendar.getInstance();
         int isAMorPM = now.get(Calendar.AM_PM);
         String ampm = "";
+        String hour = now.get(Calendar.HOUR) + "";
+        String minute = now.get(Calendar.MINUTE) + "";
 
         switch (isAMorPM) {
             case Calendar.AM:
@@ -352,7 +360,21 @@ public class ChatActivity extends FragmentActivity implements EmoticonsGridAdapt
                 ampm = getResources().getString(R.string.chat_time_PM);
         }
 
-        return ampm + now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE);
+        if (Integer.parseInt(hour) < 10) {
+            hour = "0" + hour;
+        }
+
+        if (Integer.parseInt(minute) < 10) {
+            minute = "0" + minute;
+        }
+
+        return ampm + " " + hour + ":" + minute;
+    }
+
+    private String getDate() {
+        Calendar calendar = Calendar.getInstance();
+
+        return calendar.get( Calendar.YEAR ) + "년 " + calendar.get(Calendar.MONTH) + "월 " + calendar.get(Calendar.DAY_OF_MONTH);
     }
 
 
@@ -574,5 +596,28 @@ public class ChatActivity extends FragmentActivity implements EmoticonsGridAdapt
                 isKeyBoardVisible = false;
             }
         });
+    }
+
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.chat_tb_search:
+                findViewById(R.id.chat_tb_search_box).setVisibility(View.VISIBLE);
+                break;
+            case R.id.chat_tb_menu:
+                ImageButton tab_menu = (ImageButton) findViewById(R.id.chat_tb_menu);
+                if (isMenuOpen) {
+                    tab_menu.setImageResource(android.R.drawable.ic_menu_sort_by_size);
+                    findViewById(R.id.chat_ly_menu).setVisibility(View.GONE);
+                    isMenuOpen = false;
+                } else {
+                    tab_menu.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
+                    findViewById(R.id.chat_ly_menu).setVisibility(View.VISIBLE);
+                    isMenuOpen = true;
+                }
+                break;
+            case R.id.chat_search_box_close:
+                findViewById(R.id.chat_tb_search_box).setVisibility(View.GONE);
+                break;
+        }
     }
 }

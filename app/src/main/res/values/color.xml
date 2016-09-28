@@ -6,6 +6,6 @@
     <color name="cchat_hint_text_color">#A6A6A6</color>
     <color name="cchat_main_background_color">#FFFFFF</color>
 
-    <color name="cchat_circle_menu_on_color">#33E21F4F</color>
-    <color name="cchat_circle_menu_off_color">#CFCFCF</color>
+    <color name="cchat_circle_menu_on_color">#E21F4F</color>
+    <color name="cchat_circle_menu_off_color">#ffffff</color>
 </resources>

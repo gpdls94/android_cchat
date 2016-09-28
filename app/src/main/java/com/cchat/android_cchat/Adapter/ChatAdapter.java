@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.cchat.android_cchat.Class.ChatMessage;
 import com.cchat.android_cchat.R;
+import com.cchat.android_cchat.View.CircleImageView;
 
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class ChatAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         ChatMessage chatMessage = getItem(position);
+
         LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
@@ -68,16 +70,35 @@ public class ChatAdapter extends BaseAdapter {
         }
 
         boolean myMsg = chatMessage.getIsme() ;//Just a dummy check
-        //to simulate whether it me or other sender
+
+        // PROFILE
+        if (!myMsg) {
+            holder.profile.setVisibility(View.GONE);
+        } else {
+            holder.profile.setVisibility(View.VISIBLE);
+        }
+
+        // DATE
+        if (position != 0) {
+            ChatMessage preChatMessage = getItem(position - 1);
+
+            if (preChatMessage.getDate().equals(chatMessage.getDate())) {
+                holder.txtDate.setVisibility(View.GONE);
+            } else {
+                holder.txtDate.setText(chatMessage.getDate());
+                holder.txtDate.setVisibility(View.VISIBLE);
+            }
+        }
+
         setAlignment(holder, myMsg);
 
-
+        // CATEGORY
         switch (chatMessage.getCategory()) {
             case 0:
                 holder.imgMessage.setVisibility(View.GONE);
                 holder.txtMessage.setVisibility(View.VISIBLE);
                 holder.txtMessage.setText(chatMessage.getMessage());
-                holder.txtInfo.setText(chatMessage.getDate());
+                holder.txtInfo.setText(chatMessage.getTime());
                 break;
             case 1:
                 holder.txtMessage.setVisibility(View.GONE);
@@ -132,7 +153,7 @@ public class ChatAdapter extends BaseAdapter {
             RelativeLayout.LayoutParams layoutParams =
                     (RelativeLayout.LayoutParams) holder.contentWithBG.getLayoutParams();
             layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            layoutParams.addRule(RelativeLayout.RIGHT_OF, R.id.chat_iv_profile);
             holder.contentWithBG.setLayoutParams(layoutParams);
 
 //            RelativeLayout.LayoutParams lp =
@@ -162,6 +183,8 @@ public class ChatAdapter extends BaseAdapter {
 
     private ViewHolder createViewHolder(View v) {
         ViewHolder holder = new ViewHolder();
+        holder.profile = (CircleImageView) v.findViewById(R.id.chat_iv_profile);
+        holder.txtDate = (TextView) v.findViewById(R.id.chat_tv_date);
         holder.txtMessage = (TextView) v.findViewById(R.id.txtMessage);
         holder.content = (RelativeLayout) v.findViewById(R.id.content);
         holder.contentWithBG = (LinearLayout) v.findViewById(R.id.contentWithBackground);
@@ -171,7 +194,8 @@ public class ChatAdapter extends BaseAdapter {
     }
 
     private static class ViewHolder {
-        public TextView txtMessage;
+        public CircleImageView profile;
+        public TextView txtMessage, txtDate;
         public TextView txtInfo;
         public RelativeLayout content;
         public LinearLayout contentWithBG;

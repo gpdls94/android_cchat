@@ -11,7 +11,7 @@ public class ChatMessage {
     private boolean isNotMe;
     private Spanned message;
     private Long userId;
-    private String dateTime;
+    private String dateTime, date;
 
     /** 0 text 1 image 2 voice ... **/
     private int category = 0;
@@ -44,11 +44,11 @@ public class ChatMessage {
         this.userId = userId;
     }
 
-    public String getDate() {
+    public String getTime() {
         return dateTime;
     }
 
-    public void setDate(String dateTime) {
+    public void setTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -66,5 +66,13 @@ public class ChatMessage {
 
     public void setImage(ImageView image) {
         this.image = image;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
