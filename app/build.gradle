@@ -41,4 +41,5 @@ dependencies {
     // circle menu
     compile 'com.yongbeam.y_photopicker:y-photopicker:0.0.1'
     // album
+    compile 'com.github.markushi:circlebutton:1.1'
 }

@@ -3,12 +3,14 @@ package com.cchat.android_cchat.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.cchat.android_cchat.R;
+
+import at.markushi.ui.CircleButton;
 
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -17,7 +19,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private pl.droidsonroids.gif.GifImageView gif_character;
     private LinearLayout circle_menus;
 
-    private ImageButton[] circles;
+    private CircleButton[] circles;
 
     private static boolean isNetwork;
 
@@ -43,11 +45,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void init() {
         circle_menus = (LinearLayout) view.findViewById(R.id.circle_layout);
-        circles = new ImageButton[]
-                {((ImageButton) view.findViewById(R.id.circle_emo1)), ((ImageButton) view.findViewById(R.id.circle_emo2)),
-                        ((ImageButton) view.findViewById(R.id.circle_emo3)), ((ImageButton) view.findViewById(R.id.circle_emo4)),
-                        ((ImageButton) view.findViewById(R.id.circle_heart)), ((ImageButton) view.findViewById(R.id.circle_store)),
-                        ((ImageButton) view.findViewById(R.id.circle_share)), ((ImageButton) view.findViewById(R.id.circle_))};
+        circle_menus.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                view.setVisibility(View.GONE);
+                return false;
+            }
+        });
+
+        circles = new CircleButton[]
+                {((CircleButton) view.findViewById(R.id.circle_emo1)), ((CircleButton) view.findViewById(R.id.circle_emo2)),
+                        ((CircleButton) view.findViewById(R.id.circle_emo3)), ((CircleButton) view.findViewById(R.id.circle_emo4)),
+                        ((CircleButton) view.findViewById(R.id.circle_heart)), ((CircleButton) view.findViewById(R.id.circle_store)),
+                        ((CircleButton) view.findViewById(R.id.circle_share)), ((CircleButton) view.findViewById(R.id.circle_))};
 
         gif_character = (pl.droidsonroids.gif.GifImageView) view.findViewById(R.id.home_gif_character);
         gif_character.setLongClickable(true);
@@ -68,6 +78,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
+//        ((CircleButton) view).setColor(getResources().getColor(R.color.cchat_main_color));
     }
 }
