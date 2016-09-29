@@ -6,7 +6,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.cchat.android_cchat.Adapter.TabFragmentPagerAdapter;
 import com.cchat.android_cchat.Common.CreateDialog;
@@ -17,7 +19,9 @@ import com.cchat.android_cchat.R;
  */
 public class TabActivity extends AppCompatActivity {
 
-    FloatingActionButton btn_chat, btn_add;
+    FloatingActionButton btn_chat, btn_add, btn_ann, btn_plan;
+    LinearLayout ly_cal;
+    TabLayout ly_tab;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,30 @@ public class TabActivity extends AppCompatActivity {
     }
 
     private void init() {
+        ly_tab = (TabLayout) findViewById(R.id.sliding_tabs);
+
+        btn_ann = (FloatingActionButton) findViewById(R.id.tab_floating_ann);
+        btn_plan = (FloatingActionButton) findViewById(R.id.tab_floating_plan);
+
+        ly_cal = (LinearLayout) findViewById(R.id.tab_ly_cal);
+        ly_cal.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                ly_cal.setVisibility(View.GONE);
+                ly_tab.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
         btn_add = (FloatingActionButton) findViewById(R.id.tab_floating_cal);
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ly_cal.setVisibility(View.VISIBLE);
+                ly_tab.setVisibility(View.GONE);
+            }
+        });
+
         btn_chat = (FloatingActionButton) findViewById(R.id.tab_floating);
         btn_chat.setOnClickListener(new View.OnClickListener() {
             @Override

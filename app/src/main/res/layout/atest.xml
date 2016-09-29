@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cchat_main_background_color" >
+
+    <ImageButton
+        android:id="@+id/ibCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:padding="13dp"
+        android:layout_alignParentRight="true" />
+
+    <GridView
+        android:id="@+id/gvAlbum"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ibCancel"
+        android:layout_marginTop="3dp"
+        android:stretchMode="columnWidth"
+        android:numColumns="3"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" />
+
+
+</RelativeLayout>

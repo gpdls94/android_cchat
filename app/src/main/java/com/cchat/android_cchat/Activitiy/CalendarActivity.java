@@ -244,7 +244,7 @@ public class CalendarActivity extends Activity {
             today_cell = m_Calendar.get( Calendar.DAY_OF_MONTH ) + m_startPos - 1;
 
             m_cellTextBtn[ m_Calendar.get( Calendar.DAY_OF_MONTH ) + m_startPos - 1 ].setTextColor(m_context.getResources().getColor(android.R.color.white));
-            m_cellTextBtn[ m_Calendar.get( Calendar.DAY_OF_MONTH ) + m_startPos - 1 ].setBackgroundResource(R.color.cchat_main_color);
+            m_cellTextBtn[ m_Calendar.get( Calendar.DAY_OF_MONTH ) + m_startPos - 1 ].setBackgroundResource(R.drawable.background_calendar);
         }
     }
 

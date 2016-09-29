@@ -1,45 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/cchat_main_color"/>
+        android:background="@color/cchat_main_color" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:layout_below="@+id/sliding_tabs"/>
+        android:layout_below="@+id/sliding_tabs"
+        android:background="@android:color/white" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/tab_floating"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingBottom="16dp"
+        android:paddingRight="16dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:src="@android:drawable/sym_action_email"
-        android:background="@drawable/background_circle_shdow"
-        android:layout_gravity="bottom|end"/>
+        android:orientation="vertical">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/tab_floating_cal"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_above="@+id/tab_floating"
-        android:layout_alignParentEnd="true"
-        android:src="@android:drawable/ic_input_add"
-        android:background="@drawable/background_circle_shdow"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/tab_floating_cal"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/background_circle_shdow"
+            android:layout_marginBottom="16dp"
+            android:src="@android:drawable/ic_input_add"
+            android:visibility="gone" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/tab_floating"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/background_circle_shdow"
+            android:src="@android:drawable/sym_action_email" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_ly_cal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="16dp"
+        android:paddingRight="16dp"
         android:visibility="gone"
-        android:layout_gravity="bottom|end"/>
+        android:background="#99ffffff"
+        android:gravity="bottom|end"
+        android:orientation="vertical">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/tab_floating_ann"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/background_circle_shdow"
+            android:src="@android:drawable/ic_popup_reminder" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/tab_floating_plan"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/background_circle_shdow"
+            android:src="@android:drawable/sym_action_chat" />
+
+    </LinearLayout>
 
 </RelativeLayout>

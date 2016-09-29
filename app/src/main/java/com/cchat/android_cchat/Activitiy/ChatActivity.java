@@ -543,13 +543,16 @@ public class ChatActivity extends FragmentActivity implements EmoticonsGridAdapt
             intent.setMaxGrideItemCount(3);
             startActivityForResult(intent, REQUEST_CODE);
         } else if (index.equals(btns[1])) {
-            YPhotoPickerIntent intent = new YPhotoPickerIntent(this);
-            intent.setMaxSelectCount(20);
-            intent.setShowCamera(true);
-            intent.setShowGif(true);
-            intent.setSelectCheckBox(false);
-            intent.setMaxGrideItemCount(3);
-            startActivityForResult(intent, REQUEST_CODE);
+//            YPhotoPickerIntent intent = new YPhotoPickerIntent(this);
+//            intent.setMaxSelectCount(20);
+//            intent.setShowCamera(true);
+//            intent.setShowGif(true);
+//            intent.setSelectCheckBox(false);
+//            intent.setMaxGrideItemCount(3);
+//            startActivityForResult(intent, REQUEST_CODE);
+
+            startActivity(new Intent(ChatActivity.this, FeedAlbumAt.class));
+
         } else if (index.equals(btns[2])) {
 
         } else if (index.equals(btns[3])) {
