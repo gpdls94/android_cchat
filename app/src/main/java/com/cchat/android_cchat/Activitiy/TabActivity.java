@@ -46,7 +46,20 @@ public class TabActivity extends AppCompatActivity {
         ly_tab = (TabLayout) findViewById(R.id.sliding_tabs);
 
         btn_ann = (FloatingActionButton) findViewById(R.id.tab_floating_ann);
+        btn_ann.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TabActivity.this, AnniActivity.class));
+            }
+        });
+
         btn_plan = (FloatingActionButton) findViewById(R.id.tab_floating_plan);
+        btn_plan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TabActivity.this, PlanActivity.class));
+            }
+        });
 
         ly_cal = (LinearLayout) findViewById(R.id.tab_ly_cal);
         ly_cal.setOnTouchListener(new View.OnTouchListener() {
@@ -54,6 +67,7 @@ public class TabActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 ly_cal.setVisibility(View.GONE);
                 ly_tab.setVisibility(View.VISIBLE);
+                btn_add.setVisibility(View.VISIBLE);
                 return false;
             }
         });
@@ -64,6 +78,7 @@ public class TabActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ly_cal.setVisibility(View.VISIBLE);
                 ly_tab.setVisibility(View.GONE);
+                btn_add.setVisibility(View.GONE);
             }
         });
 

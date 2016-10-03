@@ -1,7 +1,9 @@
 package com.cchat.android_cchat.Fragment;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GestureDetectorCompat;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +24,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private CircleButton[] circles;
 
     private static boolean isNetwork;
+    private GestureDetectorCompat gestureDetector;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -71,13 +74,45 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        gif_character.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    circle_menus.setVisibility(View.GONE);
+                }
+
+                checkOnClick(motionEvent.getAction(), motionEvent.getRawX(), motionEvent.getRawY());
+
+                return false;
+            }
+        });
+    }
+
+    private void checkOnClick(float actoin, float x, float y) {
+
         for (int i = 0; i < circles.length; i++) {
-            circles[i].setOnClickListener(this);
+            Rect r = new Rect();
+            circles[i].getGlobalVisibleRect(r);
+
+            if(x > r.left && x < r.right && y > r.top && y < r.bottom) {
+                if (actoin == MotionEvent.ACTION_UP) {
+                    onClick(circles[i]);
+                }
+                else if (actoin == MotionEvent.ACTION_MOVE) {
+                    circles[i].setColor(getResources().getColor(R.color.cchat_main_color));
+                    circles[i].setPressed(false);
+                }
+
+                break;
+            } else {
+                circles[i].setColor(getResources().getColor(R.color.cchat_hint_text_color));
+            }
         }
     }
 
     @Override
     public void onClick(View view) {
 //        ((CircleButton) view).setColor(getResources().getColor(R.color.cchat_main_color));
+        System.out.println("CLICKCKC!");
     }
 }

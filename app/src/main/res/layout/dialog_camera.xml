@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/cchat_main_background_color"
+    android:id="@+id/dialog_camera_ly">
+
+    <LinearLayout
+        android:layout_width="288dp"
+        android:layout_height="114dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/dialog_camera_pic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="24dp"
+            android:drawablePadding="16dp"
+            android:textSize="14sp"
+            android:text="사진 촬영"
+            android:textColor="#000000"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@android:drawable/ic_menu_camera"
+            android:gravity="center_vertical"
+            />
+        <Button
+            android:id="@+id/dialog_camera_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="24dp"
+            android:drawablePadding="16dp"
+            android:textSize="14sp"
+            android:text="동영상 촬영"
+            android:textColor="#000000"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@android:drawable/ic_menu_view"
+            android:gravity="center_vertical"/>
+    </LinearLayout>
+</LinearLayout>

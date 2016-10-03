@@ -19,12 +19,12 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:paddingBottom="16dp"
-        android:paddingRight="16dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:orientation="vertical">
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingRight="16dp">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/tab_floating_cal"
@@ -48,27 +48,59 @@
         android:id="@+id/tab_ly_cal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="16dp"
-        android:paddingRight="16dp"
-        android:visibility="gone"
         android:background="#99ffffff"
         android:gravity="bottom|end"
-        android:orientation="vertical">
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingRight="16dp">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/tab_floating_ann"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:elevation="6dp"
-            android:src="@android:drawable/ic_popup_reminder" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/tab_floating_plan"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:elevation="6dp"
-            android:src="@android:drawable/sym_action_chat" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="기념일"
+                android:textColor="@color/cchat_text_color"
+                android:textSize="14sp" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/tab_floating_ann"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:elevation="6dp"
+                android:src="@android:drawable/ic_popup_reminder" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="일정"
+                android:textColor="@color/cchat_text_color"
+                android:textSize="14sp" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/tab_floating_plan"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:elevation="6dp"
+                android:src="@android:drawable/sym_action_chat" />
+        </LinearLayout>
 
     </LinearLayout>
 

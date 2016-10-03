@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- array의 이름은 location 입니다.-->
+
+    <string-array name="to">
+        <item>공동</item>
+        <item>본인</item>
+        <item>상대방</item>
+    </string-array>
+
+</resources>

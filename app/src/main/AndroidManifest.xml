@@ -44,6 +44,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Activitiy.PlanActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Activitiy.ChatActivity"
             android:windowSoftInputMode="adjustResize"
             android:label="@string/app_name" >
@@ -59,6 +66,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".Activitiy.AnniActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         // for Album
         <activity android:name="com.yongbeam.y_photopicker.util.photopicker.PhotoPickerActivity"
             android:label="@string/app_name"

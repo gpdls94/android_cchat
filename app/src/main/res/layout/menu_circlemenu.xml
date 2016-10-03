@@ -22,7 +22,7 @@
             android:layout_marginBottom="12dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            app:cb_color="#99CC00"
+            app:cb_color="@color/cchat_hint_text_color"
             app:cb_pressedRingWidth="8dip"
             android:src="@android:drawable/ic_dialog_map" />
 
@@ -33,7 +33,7 @@
             android:layout_marginBottom="12dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            app:cb_color="#99CC00"
+            app:cb_color="@color/cchat_hint_text_color"
             app:cb_pressedRingWidth="8dip"
             android:src="@android:drawable/ic_dialog_map" />
 
@@ -45,7 +45,7 @@
             android:layout_marginBottom="12dp"
             android:layout_marginRight="-8dp"
             android:layout_toLeftOf="@+id/circle_emo2"
-            app:cb_color="#99CC00"
+            app:cb_color="@color/cchat_hint_text_color"
             app:cb_pressedRingWidth="8dip"
             android:src="@android:drawable/ic_dialog_map" />
 
@@ -57,7 +57,7 @@
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="-8dp"
             android:layout_toRightOf="@+id/circle_store"
-            app:cb_color="#99CC00"
+            app:cb_color="@color/cchat_hint_text_color"
             app:cb_pressedRingWidth="8dip"
             android:src="@android:drawable/ic_dialog_map" />
 
@@ -77,7 +77,7 @@
             android:layout_marginTop="12dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            app:cb_color="#99CC00"
+            app:cb_color="@color/cchat_hint_text_color"
             app:cb_pressedRingWidth="8dip"
             android:src="@android:drawable/ic_dialog_map" />
 
@@ -88,7 +88,7 @@
             android:layout_marginTop="12dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            app:cb_color="#99CC00"
+            app:cb_color="@color/cchat_hint_text_color"
             app:cb_pressedRingWidth="8dip"
             android:src="@android:drawable/ic_dialog_map" />
 
@@ -100,7 +100,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginLeft="-8dp"
             android:layout_toRightOf="@+id/circle_share"
-            app:cb_color="#99CC00"
+            app:cb_color="@color/cchat_hint_text_color"
             app:cb_pressedRingWidth="8dip"
             android:src="@android:drawable/ic_dialog_map" />
 
@@ -112,7 +112,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginRight="-8dp"
             android:layout_toLeftOf="@+id/circle_emo3"
-            app:cb_color="#99CC00"
+            app:cb_color="@color/cchat_hint_text_color"
             app:cb_pressedRingWidth="8dip"
             android:src="@android:drawable/ic_dialog_map" />
 

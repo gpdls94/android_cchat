@@ -37,10 +37,10 @@ import com.cchat.android_cchat.Adapter.EmoticonsPagerAdapter;
 import com.cchat.android_cchat.Adapter.PlusGridAdapter;
 import com.cchat.android_cchat.Adapter.PlusPagerAdapter;
 import com.cchat.android_cchat.Class.ChatMessage;
+import com.cchat.android_cchat.Common.CreateDialog;
 import com.cchat.android_cchat.R;
 import com.cchat.android_cchat.View.SoftKeyboardDectectorView;
 import com.yongbeam.y_photopicker.util.photopicker.PhotoPickerActivity;
-import com.yongbeam.y_photopicker.util.photopicker.utils.YPhotoPickerIntent;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -535,13 +535,7 @@ public class ChatActivity extends FragmentActivity implements EmoticonsGridAdapt
     public void plusKeyClickedIndex(String index) {
 
         if (index.equals(btns[0])) {
-            YPhotoPickerIntent intent = new YPhotoPickerIntent(this);
-            intent.setMaxSelectCount(20);
-            intent.setShowCamera(true);
-            intent.setShowGif(true);
-            intent.setSelectCheckBox(false);
-            intent.setMaxGrideItemCount(3);
-            startActivityForResult(intent, REQUEST_CODE);
+            (new CreateDialog(ChatActivity.this)).camera();
         } else if (index.equals(btns[1])) {
 //            YPhotoPickerIntent intent = new YPhotoPickerIntent(this);
 //            intent.setMaxSelectCount(20);

@@ -107,6 +107,20 @@ public class CreateDialog {
         mDialog.show();
     }
 
+    public void camera() {
+        mDialog = new Dialog(act);
+        view = li.inflate(R.layout.dialog_camera, (ViewGroup) act.findViewById(R.id.dialog_camera_ly));
+        Button pic_btn = (Button) view.findViewById(R.id.dialog_camera_pic);
+        Button vi_btn = (Button) view.findViewById(R.id.dialog_camera_video);
+
+        mDialog.setTitle(null);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mDialog.setCancelable(true);
+        mDialog.setContentView(view);
+        mDialog.show();
+    }
+
+
     public void network() {
         mDialog = new Dialog(act);
         view = li.inflate(R.layout.dialog_network, (ViewGroup) act.findViewById(R.id.dialog_network_ly));
